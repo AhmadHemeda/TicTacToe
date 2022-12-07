@@ -2,6 +2,7 @@
 package tictactoe;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -15,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -23,8 +26,18 @@ public class ScenesNavigator {
     private Stage stage;
     private Scene scene;
     private Parent root;
-  
-   
+    @FXML
+    private ImageView historyIcon;
+    @FXML
+    private Button backButton;
+    @FXML
+    private TextField textFieldPlayerName2;
+    @FXML
+    private TextField textFieldPlayerName1;
+    @FXML
+    private Button nextButton;
+            
+           
                 public void switchToSinglePlayerScene(ActionEvent event){
         try {
             root = FXMLLoader.load(getClass().getResource("SinglePlayerName.fxml"));
@@ -49,6 +62,7 @@ public class ScenesNavigator {
                     stage.show();
                
                 }
+    @FXML
                    public void backArrow(ActionEvent event){
        try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
@@ -61,7 +75,6 @@ public class ScenesNavigator {
                     stage.show();
                
                 }
-    @FXML
                    public void homeButton(ActionEvent event){
                        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to back the home page? All records will be deleted");
        try {
@@ -75,9 +88,25 @@ public class ScenesNavigator {
                     stage.show();
                
                 }
+    @FXML
             public void NextButtonTwoPlayer(ActionEvent event){
        try {
-            root = FXMLLoader.load(getClass().getResource("TwoPlayerBoard.fxml"));
+           if(textFieldPlayerName1.getText().isEmpty()||textFieldPlayerName2.getText().isEmpty())
+           {
+                Alert a=new Alert(Alert.AlertType.WARNING);
+                a.setHeaderText("Please enter player name");
+                a.setTitle("Pay Attention");
+                Optional<ButtonType>result=a.showAndWait();
+                 
+                if(result.get()==ButtonType.OK){
+                    root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
+                }
+
+           }
+           else{
+               root = FXMLLoader.load(getClass().getResource("TwoPlayerBoard.fxml"));
+           }
+           
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,7 +140,6 @@ public class ScenesNavigator {
                
                 }
             
-    @FXML
                  public void exitButton(ActionEvent event){
        Platform.exit();}
     }
