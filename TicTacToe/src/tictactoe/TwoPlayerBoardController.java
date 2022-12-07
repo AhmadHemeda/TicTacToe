@@ -66,8 +66,12 @@ public class TwoPlayerBoardController implements Initializable {
     private int counterPlayer1;
     private int counterPlayer2;
     Vector<Button> buttons;
-   
+
+  
     
+
+    
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -221,5 +225,14 @@ public class TwoPlayerBoardController implements Initializable {
         button.setText("");
     
     }
+    public void setPlayerOneNameText(String playerOneName){
+    this.playerOneName.setText(playerOneName);
+    
+    }
+    public void setPlayerTwoNameText(String playerTwoName){
+    this.playerTwoName.setText(playerTwoName);
+    
+    }
+    
     
 }

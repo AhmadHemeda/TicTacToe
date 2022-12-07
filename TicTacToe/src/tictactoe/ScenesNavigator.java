@@ -36,6 +36,7 @@ public class ScenesNavigator {
     private TextField textFieldPlayerName1;
     @FXML
     private Button nextButton;
+   
             
            
                 public void switchToSinglePlayerScene(ActionEvent event){
@@ -76,7 +77,7 @@ public class ScenesNavigator {
                
                 }
                    public void homeButton(ActionEvent event){
-                       Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to back the home page? All records will be deleted");
+                       
        try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
         } catch (IOException ex) {
@@ -99,22 +100,29 @@ public class ScenesNavigator {
                 Optional<ButtonType>result=a.showAndWait();
                  
                 if(result.get()==ButtonType.OK){
+                    
                     root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
                 }
 
            }
            else{
-               root = FXMLLoader.load(getClass().getResource("TwoPlayerBoard.fxml"));
+              FXMLLoader loader = new 		  FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
+                root = loader.load();
+                TwoPlayerBoardController twoPlayerBoardController = loader.getController();
+                twoPlayerBoardController.setPlayerOneNameText(textFieldPlayerName1.getText());
+                twoPlayerBoardController.setPlayerTwoNameText(textFieldPlayerName2.getText());
+               
+               
            }
            
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Button)event.getSource()).getScene().getWindow();
+                    stage=(Stage)((Node)event.getSource()).getScene().getWindow();
                     scene=new Scene(root);
                     stage.setScene(scene);
                     stage.show();
-               
+                   
                 } public void NextButtonSinglePlayer(ActionEvent event){
        try {
             root = FXMLLoader.load(getClass().getResource("Defficulty.fxml"));
@@ -142,6 +150,7 @@ public class ScenesNavigator {
             
                  public void exitButton(ActionEvent event){
        Platform.exit();}
+                
     }
     
       
