@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,12 +15,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ScenesNavigator {
     private Stage stage;
     private Scene scene;
     private Parent root;
+  
    
                 public void switchToSinglePlayerScene(ActionEvent event){
         try {
@@ -57,6 +61,7 @@ public class ScenesNavigator {
                     stage.show();
                
                 }
+    @FXML
                    public void homeButton(ActionEvent event){
                        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to back the home page? All records will be deleted");
        try {
@@ -106,6 +111,7 @@ public class ScenesNavigator {
                
                 }
             
+    @FXML
                  public void exitButton(ActionEvent event){
        Platform.exit();}
     }
