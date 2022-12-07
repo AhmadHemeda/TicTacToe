@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -56,13 +57,17 @@ public class TwoPlayerBoardController implements Initializable {
     private Button homeButton;
     @FXML
     private Button exitButton;
+       
     private Stage stage;
     private Scene scene;
     private Parent root;
     private int playerTurn=0;
+
     private int counterPlayer1;
     private int counterPlayer2;
     Vector<Button> buttons;
+   
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,7 +90,7 @@ public class TwoPlayerBoardController implements Initializable {
 
     @FXML
     private void homeButton(ActionEvent event) {
-              Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to back the home page? All records will be deleted");
+             
        try {
                 root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
         } catch (IOException ex) {
