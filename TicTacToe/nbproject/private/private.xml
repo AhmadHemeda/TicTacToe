@@ -3,12 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/TicTacToe.java</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/TwoPlayerBoardBase.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/WinningScreen.fxml</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/ScenesNavigator.java</file>
-            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/nbproject/jfx-impl.xml</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/ServerController.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/SingleBoardController.java</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/SinglePlayerBoardBase.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/WinningScreenController.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/WinningScreenBase.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/Server.fxml</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/TwoPlayerBoardController.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToe/src/tictactoe/LoadingScreenController.java</file>
         </group>
     </open-files>
 </project-private>
