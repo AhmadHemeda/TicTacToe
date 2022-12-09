@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictactoe;
 
 import java.io.IOException;
@@ -19,19 +14,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author noha Ali
- */
-public class TwoPlayerBoardController implements Initializable {
+public class SinglePlayerBoardController implements Initializable {
 
     @FXML
     private Text playerOneName;
@@ -69,13 +57,14 @@ public class TwoPlayerBoardController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private int playerTurn = 0;
 
-    private int counterPlayer1;
-    private int counterPlayer2;
+    private int counterPlayer1 = 0;
+    private int counterPlayer2 = 0;
+    private int counterclicked = 0;
+
     Vector<Button> buttons;
 
-    @Override
+    @FXML
     public void initialize(URL url, ResourceBundle rb) {
         buttons = new Vector<Button>();
         buttons.add(btn11);
@@ -87,10 +76,8 @@ public class TwoPlayerBoardController implements Initializable {
         buttons.add(btn31);
         buttons.add(btn32);
         buttons.add(btn33);
-        buttons.forEach(button -> {
-            setUpButton(button);
-            button.setFocusTraversable(false);
-        });
+
+        System.out.println(buttons.size());
 
     }
 
@@ -114,22 +101,32 @@ public class TwoPlayerBoardController implements Initializable {
         Platform.exit();
     }
 
-    private void setUpButton(Button button) {
-        button.setOnMouseClicked((MouseEvent) -> {
-            setPlayerSymbol(button);
-            button.setDisable(true);
-            checkGameOver();
-        });
-    }
+    @FXML
+    private void setUpButton(ActionEvent e) {
 
-    private void setPlayerSymbol(Button button) {
-        if (playerTurn % 2 == 0) {
-            button.setText("X");
-            playerTurn = 1;
-        } else {
-            button.setText("O");
-            playerTurn = 0;
+        counterclicked++;
+
+        Button button = (Button) e.getSource();
+        button.setText("X");
+        button.setDisable(true);
+        ComputerMove();
+        checkGameOver();
+
+    }
+    
+    private void ComputerMove() {
+        int randomMove = (int) (Math.random() * (9 - counterclicked)) + 1;
+        for (Button button : buttons) {
+            if (button.getText().equals("")) {
+                randomMove--;
+                if (randomMove == 0) {
+                    button.setText("O");
+                    button.setDisable(true);
+                    break;
+                }
+            }
         }
+        counterclicked++;
     }
 
     private void checkGameOver() {
@@ -172,22 +169,18 @@ public class TwoPlayerBoardController implements Initializable {
                 counterPlayer1++;
                 playerOneScoreBtn.setText(Integer.toString(counterPlayer1));
                 restartGame();
-                playerTurn = 0;
+
             }
             if (gameStatus.equals("OOO")) {
                 counterPlayer2 = parseInt(playerTwoScoreBtn.getText());
                 counterPlayer2++;
                 playerTwoScoreBtn.setText(Integer.toString(counterPlayer2));
                 restartGame();
-                playerTurn = 0;
             }
             if (isWon(gameStatus) == false && isfull() == true) {
                 restartGame();
-                playerTurn = 0;
             }
-
         }
-
     }
 
     private boolean isWon(String status) {
@@ -199,7 +192,7 @@ public class TwoPlayerBoardController implements Initializable {
     }
 
     private boolean isfull() {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 8; i++) {
             if (buttons.get(i).getText() == "") {
                 return false;
             }
@@ -215,6 +208,7 @@ public class TwoPlayerBoardController implements Initializable {
     }
 
     public void resetButton(Button button) {
+        counterclicked = 0;
         button.setDisable(false);
         button.setText("");
 
