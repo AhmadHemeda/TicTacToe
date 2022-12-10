@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ScenesNavigator">
+<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.SinglePlayerBoardController">
    <children>
       <GridPane prefHeight="861.0" prefWidth="1200.0">
         <columnConstraints>
@@ -158,7 +158,7 @@
                         <Insets bottom="50.0" left="150.0" right="150.0" top="50.0" />
                      </GridPane.margin>
                      <children>
-                        <Button fx:id="btn11" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b">
+                        <Button fx:id="btn11" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -166,9 +166,7 @@
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Button fx:id="btn12" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="1">
+                        <Button fx:id="btn12" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="1">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
@@ -176,7 +174,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btn13" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="2">
+                        <Button fx:id="btn13" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="2">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
@@ -184,7 +182,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btn21" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.rowIndex="1">
+                        <Button fx:id="btn21" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.rowIndex="1">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
@@ -192,7 +190,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btn22" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button fx:id="btn22" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
@@ -200,7 +198,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btn23" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button fx:id="btn23" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
@@ -208,7 +206,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btn31" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.rowIndex="2">
+                        <Button fx:id="btn31" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.rowIndex="2">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
@@ -216,7 +214,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btn32" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button fx:id="btn32" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
@@ -224,7 +222,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="btn33" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button fx:id="btn33" maxHeight="150.0" maxWidth="150.0" mnemonicParsing="false" onAction="#setUpButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #500B4D; -fx-background-radius: 15; -fx-border-radius: 15;" textFill="#ff925b" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="Book Antiqua Bold" size="30.0" />
                            </font>
