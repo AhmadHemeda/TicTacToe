@@ -106,6 +106,7 @@ public class ScenesNavigator {
                 }
 
             } else {
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
                 root = loader.load();
                 TwoPlayerBoardController twoPlayerBoardController = loader.getController();
@@ -117,7 +118,10 @@ public class ScenesNavigator {
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -136,18 +140,9 @@ public class ScenesNavigator {
         stage.show();
 
     }
-    public void WinScreenNav (ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getResource("WinningScreen.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 
-    }
+
+
 
     public void easyButton(ActionEvent event) {
         try {
@@ -165,5 +160,4 @@ public class ScenesNavigator {
     public void exitButton(ActionEvent event) {
         Platform.exit();
     }
-
 }
