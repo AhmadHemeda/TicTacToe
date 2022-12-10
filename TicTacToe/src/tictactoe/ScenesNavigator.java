@@ -101,7 +101,7 @@ public class ScenesNavigator {
                 Optional<ButtonType> result = a.showAndWait();
 
                 if (result.get() == ButtonType.OK) {
-
+<
                     root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
                 }
 
@@ -136,18 +136,7 @@ public class ScenesNavigator {
         stage.show();
 
     }
-    public void WinScreenNav (ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getResource("WinningScreen.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 
-    }
 
     public void easyButton(ActionEvent event) {
         try {
@@ -165,5 +154,4 @@ public class ScenesNavigator {
     public void exitButton(ActionEvent event) {
         Platform.exit();
     }
-
 }

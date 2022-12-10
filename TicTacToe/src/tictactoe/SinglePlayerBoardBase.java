@@ -440,7 +440,6 @@ public abstract class SinglePlayerBoardBase extends AnchorPane {
                     XOCounter+=1;
                     checkIfGameEnds();
                 }else{
-                
                     btn13.setText("O");
                     XOCounter+=1;
                     checkIfGameEnds();
@@ -600,7 +599,6 @@ public abstract class SinglePlayerBoardBase extends AnchorPane {
                     XOCounter+=1;
                     checkIfGameEnds();
                 }else{
-                
                     btn33.setText("O");
                     XOCounter+=1;
                     checkIfGameEnds();
