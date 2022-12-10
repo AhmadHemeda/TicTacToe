@@ -4,23 +4,28 @@ package tictactoe;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class TwoPlayerBoardController implements Initializable {
@@ -114,10 +119,30 @@ public class TwoPlayerBoardController implements Initializable {
 
     private void setUpButton(Button button) {
         button.setOnMouseClicked((MouseEvent) -> {
-            setPlayerSymbol(button);
-            button.setDisable(true);
-            checkGameOver();
+            try {
+                setPlayerSymbol(button);
+                button.setDisable(true);
+               String stat= checkGameOver();
+               if(stat.equals("XXX")||stat.equals("OOO"))
+               {
+                     root = FXMLLoader.load(getClass().getResource("WinningScreen.fxml"));
+                     
+                     stage = (Stage) ((Button) MouseEvent.getSource()).getScene().getWindow();
+                     scene = new Scene(root);
+                     stage.setScene(scene);
+                     stage.show();
+               }
+            } catch (IOException ex) {
+                Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
+    }
+     public void navigateTo(Parent distinationRoot,Stage currentStage){
+    scene=new Scene(distinationRoot);
+    stage=currentStage;
+    stage.show();
+    
+    
     }
 
     private void setPlayerSymbol(Button button) {
@@ -132,9 +157,10 @@ public class TwoPlayerBoardController implements Initializable {
         }
     }
 
-    private void checkGameOver() {
+    private String checkGameOver() throws IOException {
+       String stat="";
         for(int i=0;i<8;i++)
-        {   String gameStatus;
+        {    String gameStatus;
             switch(i)
             {
                 case 0:
@@ -172,37 +198,52 @@ public class TwoPlayerBoardController implements Initializable {
         
         if(gameStatus.equals("XXX"))
         {
-            
             counterPlayer1=parseInt(playerOneScoreBtn.getText());
             counterPlayer1++;
             playerOneScoreBtn.setText(Integer.toString(counterPlayer1));
-            restartGame();
-            playerTurn=0;
+            return gameStatus;
+            
+           
         }
        if(gameStatus.equals("OOO"))
         {
             counterPlayer2=parseInt(playerTwoScoreBtn.getText());
             counterPlayer2++;
             playerTwoScoreBtn.setText(Integer.toString(counterPlayer2));
-            restartGame();
-            playerTurn=0;
+            return gameStatus;
+           
         }
-       if(isWon(gameStatus)==false&&isfull()==true)
+       if(isWon()==false&&isfull()==true)
        {
            restartGame();
            playerTurn=0;
        }
     
-        
+       
         }
-        
+       return stat; 
     }
-    private boolean isWon(String status)
+    private boolean isWon()
     {
-    if(status=="XXX"||status=="OOO")
-        return true;
+        String status=null;
+    if(status=="XXX"||status=="OOO"){
+		return true;
+		
+	}
+        
     return false;
     
+    }
+    public void WinScreenNav () {
+        try {
+             root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
+             
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+
     }
     
    private boolean isfull()

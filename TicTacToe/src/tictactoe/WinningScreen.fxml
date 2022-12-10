@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ScenesNavigator">
+   <children>
+      <ImageView fitHeight="861.0" fitWidth="1200.0">
+         <image>
+            <Image url="@../Resources/images/back.PNG" />
+         </image>
+      </ImageView>
+      <GridPane prefHeight="861.0" prefWidth="1200.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="724.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="734.0" minHeight="10.0" prefHeight="600.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="423.0" minHeight="10.0" prefHeight="156.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MediaView fx:id="playingVedio" fitHeight="600.0" fitWidth="1000.0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="100.0" right="100.0" />
+               </GridPane.margin>
+            </MediaView>
+            <GridPane GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#backArrow" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: FF925B; -fx-background-radius: 100; -fx-border-radius: 100;" text="Reset" textFill="#92435f" translateX="170.0">
+                     <font>
+                        <Font name="Book Antiqua" size="30.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitButton" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #FF925B; -fx-background-radius: 100; -fx-border-radius: 100;" text="Exit" textFill="#92435f" translateX="170.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Book Antiqua" size="30.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="100.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Text fx:id="winnerName" fill="#92435f" layoutX="320.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Winner">
+                     <font>
+                        <Font name="Book Antiqua" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#92435f" layoutX="103.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulation">
+                     <font>
+                        <Font name="Book Antiqua" size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

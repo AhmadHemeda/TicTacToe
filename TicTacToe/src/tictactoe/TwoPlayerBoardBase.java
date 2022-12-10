@@ -717,6 +717,7 @@ public abstract class TwoPlayerBoardBase extends AnchorPane {
             isGameEnds = true;
             if(t11.equals("X")){
                 winner="X";
+                
             }else{
                 winner="O";
             }

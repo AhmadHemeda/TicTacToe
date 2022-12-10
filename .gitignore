@@ -26,3 +26,6 @@ hs_err_pid*
 /TicTacToe/build/
 
 *.DS_Store
+/Demo/nbproject/private/
+/Demo/build/
+/Demo/dist/

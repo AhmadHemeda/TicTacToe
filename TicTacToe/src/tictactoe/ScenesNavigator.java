@@ -1,4 +1,3 @@
-
 package tictactoe;
 
 import java.io.IOException;
@@ -23,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ScenesNavigator {
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -36,123 +36,134 @@ public class ScenesNavigator {
     private TextField textFieldPlayerName1;
     @FXML
     private Button nextButton;
-   
-            
-           
-                public void switchToSinglePlayerScene(ActionEvent event){
+
+    public void switchToSinglePlayerScene(ActionEvent event) {
         try {
             root = FXMLLoader.load(getClass().getResource("SinglePlayerName.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Button)event.getSource()).getScene().getWindow();
-                    scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-               
-                }
-                  public void switchToTwoPlayerScene(ActionEvent event){
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void switchToTwoPlayerScene(ActionEvent event) {
         try {
             root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Button)event.getSource()).getScene().getWindow();
-                    scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-               
-                }
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     @FXML
-                   public void backArrow(ActionEvent event){
-       try {
+    public void backArrow(ActionEvent event) {
+        try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Button)event.getSource()).getScene().getWindow();
-                    scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-               
-                }
-                   public void homeButton(ActionEvent event){
-                       
-       try {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void homeButton(ActionEvent event) {
+
+        try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Button)event.getSource()).getScene().getWindow();
-                    scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-               
-                }
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     @FXML
-            public void NextButtonTwoPlayer(ActionEvent event){
-       try {
-           if(textFieldPlayerName1.getText().isEmpty()||textFieldPlayerName2.getText().isEmpty())
-           {
-                Alert a=new Alert(Alert.AlertType.WARNING);
+    public void NextButtonTwoPlayer(ActionEvent event) {
+        try {
+            if (textFieldPlayerName1.getText().isEmpty() || textFieldPlayerName2.getText().isEmpty()) {
+                Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setHeaderText("Please enter player name");
                 a.setTitle("Pay Attention");
-                Optional<ButtonType>result=a.showAndWait();
-                 
-                if(result.get()==ButtonType.OK){
-                    
+                Optional<ButtonType> result = a.showAndWait();
+
+                if (result.get() == ButtonType.OK) {
+
                     root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
                 }
 
-           }
-           else{
-              FXMLLoader loader = new 		  FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
                 root = loader.load();
                 TwoPlayerBoardController twoPlayerBoardController = loader.getController();
                 twoPlayerBoardController.setPlayerOneNameText(textFieldPlayerName1.getText());
                 twoPlayerBoardController.setPlayerTwoNameText(textFieldPlayerName2.getText());
-               
-               
-           }
-           
+
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                   
-                } public void NextButtonSinglePlayer(ActionEvent event){
-       try {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void NextButtonSinglePlayer(ActionEvent event) {
+        try {
             root = FXMLLoader.load(getClass().getResource("Defficulty.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Button)event.getSource()).getScene().getWindow();
-                    scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-               
-                }
-                 public void easyButton(ActionEvent event){
-       try {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+    public void WinScreenNav (ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("WinningScreen.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void easyButton(ActionEvent event) {
+        try {
             root = FXMLLoader.load(getClass().getResource("SinglePlayerBoard.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    stage=(Stage)((Button)event.getSource()).getScene().getWindow();
-                    scene=new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-               
-                }
-            
-                 public void exitButton(ActionEvent event){
-       Platform.exit();}
-                
-    }
-    
-      
- 
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
+    }
+
+    public void exitButton(ActionEvent event) {
+        Platform.exit();
+    }
+
+}
