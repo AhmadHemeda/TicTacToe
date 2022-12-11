@@ -5,9 +5,10 @@
  */
 package tictactoe;
 
-import com.sun.jndi.dns.DnsContextFactory;
+import LocalData.TwoGame;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,10 +23,11 @@ import javafx.scene.control.Button;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import java.time.LocalTime;
+import LocalData.TwoGame;
 
 public class WinningScreenController implements Initializable {
-
+   
     @FXML
     private MediaView playingVedio;
     @FXML
@@ -39,10 +41,10 @@ public class WinningScreenController implements Initializable {
     private Scene scene;
     private int counter1=CounterTwoPlayers.getCounterPlayer1();
     private int counter2=CounterTwoPlayers.getCounterPlayer2();
-    
-    
+    LocalDate date ;
+    LocalTime time;
     public void initialize(URL url, ResourceBundle rb) {
-       
+        getRow();
     }    
 
     @FXML
@@ -75,5 +77,17 @@ public class WinningScreenController implements Initializable {
     this.winnerName.setText(playerOneName);
     
     }
-
+    public TwoGame getRow(){
+        
+        String playerOneName=TwoPlayerName.getPlayerOne();
+        String playerTwoName=TwoPlayerName.getPlayerTwo();
+        String winnerName=this.winnerName.getText();
+        date=java.time.LocalDate.now();
+        time=java.time.LocalTime.now();
+        String timeString=time.toString();
+        String timeSubString=timeString.substring(0,5);
+        TwoGame twoGame=new TwoGame(playerOneName,playerTwoName,date,winnerName,timeSubString);
+        return twoGame;
+    }    
+ 
 }
