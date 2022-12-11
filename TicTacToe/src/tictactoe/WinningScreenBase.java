@@ -100,6 +100,7 @@ public abstract class WinningScreenBase extends AnchorPane {
         GridPane.setRowIndex(playingVedio, 1);
         playingVedio.setFitHeight(600.0);
         playingVedio.setFitWidth(1000.0);
+        
         GridPane.setMargin(playingVedio, new Insets(0.0, 100.0, 0.0, 100.0));
 
         GridPane.setRowIndex(gridPane0, 2);

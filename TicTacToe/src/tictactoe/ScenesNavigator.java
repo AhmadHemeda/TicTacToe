@@ -36,6 +36,7 @@ public class ScenesNavigator {
     private TextField textFieldPlayerName1;
     @FXML
     private Button nextButton;
+    
 
     public void switchToSinglePlayerScene(ActionEvent event) {
         try {
@@ -93,7 +94,10 @@ public class ScenesNavigator {
 
     @FXML
     public void NextButtonTwoPlayer(ActionEvent event) {
+        CounterTwoPlayers.setCounterPlayer1(0);
+        CounterTwoPlayers.setCounterPlayer2(0);
         try {
+           
             if (textFieldPlayerName1.getText().isEmpty() || textFieldPlayerName2.getText().isEmpty()) {
                 Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setHeaderText("Please enter player name");
@@ -101,7 +105,7 @@ public class ScenesNavigator {
                 Optional<ButtonType> result = a.showAndWait();
 
                 if (result.get() == ButtonType.OK) {
-<
+
                     root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
                 }
 
@@ -111,7 +115,9 @@ public class ScenesNavigator {
                 TwoPlayerBoardController twoPlayerBoardController = loader.getController();
                 twoPlayerBoardController.setPlayerOneNameText(textFieldPlayerName1.getText());
                 twoPlayerBoardController.setPlayerTwoNameText(textFieldPlayerName2.getText());
-
+               
+                TwoPlayerName.setPlayerOne(textFieldPlayerName1.getText());
+                TwoPlayerName.setPlayerTwo(textFieldPlayerName2.getText());
             }
 
         } catch (IOException ex) {
@@ -121,7 +127,8 @@ public class ScenesNavigator {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+         
+           
     }
 
     public void NextButtonSinglePlayer(ActionEvent event) {
@@ -154,4 +161,15 @@ public class ScenesNavigator {
     public void exitButton(ActionEvent event) {
         Platform.exit();
     }
+
+    public String getTextFieldPlayerName2() {
+        return this.textFieldPlayerName2.getText();
+    }
+
+    public String getTextFieldPlayerName1() {
+        return this.textFieldPlayerName1.getText();
+    }
+
+  
+  
 }

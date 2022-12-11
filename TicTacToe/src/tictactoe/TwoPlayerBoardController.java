@@ -30,12 +30,14 @@ import javafx.util.Duration;
 
 public class TwoPlayerBoardController implements Initializable {
 
+    private int counterPlayer1=CounterTwoPlayers.getCounterPlayer1();
+    private int counterPlayer2=CounterTwoPlayers.getCounterPlayer2();
     @FXML
     private Text playerOneName;
     @FXML
     private Text playerTwoName;
     @FXML
-    private Button playerOneScoreBtn;
+    private  Button playerOneScoreBtn;
     @FXML
     private Button playerTwoScoreBtn;
     @FXML
@@ -68,8 +70,7 @@ public class TwoPlayerBoardController implements Initializable {
     private Parent root;
     private int playerTurn = 0;
 
-    private int counterPlayer1;
-    private int counterPlayer2;
+ 
     Vector<Button> buttons;
 
     @Override
@@ -93,7 +94,7 @@ public class TwoPlayerBoardController implements Initializable {
 
     @FXML
     private void homeButton(ActionEvent event) {
-
+        
         try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
         } catch (IOException ex) {
@@ -119,25 +120,24 @@ public class TwoPlayerBoardController implements Initializable {
                String stat= checkGameOver();
                if(stat.equals("XXX")||stat.equals("OOO"))
                {
-                     root = FXMLLoader.load(getClass().getResource("WinningScreen.fxml"));
-                     
-                     stage = (Stage) ((Button) MouseEvent.getSource()).getScene().getWindow();
-                     scene = new Scene(root);
-                     stage.setScene(scene);
-                     stage.show();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("WinningScreen.fxml"));
+                   root = loader.load();
+                   WinningScreenController winningSceneController = loader.getController();
+                     if(stat.equals("XXX"))
+                         winningSceneController.setWinnerNameText(playerOneName.getText());    
+                     else
+                         winningSceneController.setWinnerNameText(playerTwoName.getText());
+                   stage = (Stage) ((Button) MouseEvent.getSource()).getScene().getWindow();
+                   scene = new Scene(root);
+                   stage.setScene(scene);
+                   stage.show();
                }
             } catch (IOException ex) {
                 Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
-     public void navigateTo(Parent distinationRoot,Stage currentStage){
-    scene=new Scene(distinationRoot);
-    stage=currentStage;
-    stage.show();
     
-    
-    }
 
     private void setPlayerSymbol(Button button) {
         if (playerTurn % 2 == 0) {
@@ -187,19 +187,21 @@ public class TwoPlayerBoardController implements Initializable {
            
         
         if(gameStatus.equals("XXX"))
-        {
-            counterPlayer1=parseInt(playerOneScoreBtn.getText());
+        {   
+            
             counterPlayer1++;
-            playerOneScoreBtn.setText(Integer.toString(counterPlayer1));
+            CounterTwoPlayers.setCounterPlayer1(counterPlayer1);
+            
             return gameStatus;
             
            
         }
        if(gameStatus.equals("OOO"))
-        {
-            counterPlayer2=parseInt(playerTwoScoreBtn.getText());
+        {   
+            
             counterPlayer2++;
-            playerTwoScoreBtn.setText(Integer.toString(counterPlayer2));
+            CounterTwoPlayers.setCounterPlayer2(counterPlayer2);
+            
             return gameStatus;
            
         }
@@ -224,55 +226,41 @@ public class TwoPlayerBoardController implements Initializable {
     return false;
     
     }
-    public void WinScreenNav () {
-        try {
-             root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
-             
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-
-    }
+  
     
-   private boolean isfull()
-    {
-        for(int i=0;i<9;i++)
-    if(buttons.get(i).getText()=="")
-        return false;
-
-    }
+  
 
     private boolean isfull() {
         for (int i = 0; i < 9; i++) {
-            if (buttons.get(i).getText() == "") {
+            if (buttons.get(i).getText() == "") 
+            {
                 return false;
             }
         }
         return true;
-
     }
 
     private void restartGame() {
 
         buttons.forEach(this::resetButton);
-
+        
     }
 
     public void resetButton(Button button) {
         button.setDisable(false);
         button.setText("");
-
     }
     public void setPlayerOneNameText(String playerOneName){
     this.playerOneName.setText(playerOneName);
-    
     }
     public void setPlayerTwoNameText(String playerTwoName){
     this.playerTwoName.setText(playerTwoName);
-    
     }
-    
-    
+    public void setPlayerCounter1(int counter1){
+    this.playerOneScoreBtn.setText(Integer.toString(counter1));
+    }
+    public void setPlayerCounter2(int counter2){
+    this.playerTwoScoreBtn.setText(Integer.toString(counter2));
+    }
+
 }
