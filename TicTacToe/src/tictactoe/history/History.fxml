@@ -23,7 +23,7 @@
          <children>
             <ImageView fitHeight="861.0" fitWidth="523.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/background.png" />
+                  <Image url="@../../Resources/images/background.png" />
                </image>
             </ImageView>
             <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
