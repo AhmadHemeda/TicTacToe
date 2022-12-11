@@ -1,27 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictactoe;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 
-/**
- * FXML Controller class
- *
- * @author SOHA
- */
 public class ServerController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
+    
+    @FXML
+    private BarChart<?, ?> activePlayersChart;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        XYChart.Series set = new XYChart.Series<>();
+        
+        set.getData().add(new XYChart.Data<>("Online", 4));
+        set.getData().add(new XYChart.Data<>("Offline", 1));
+        
+        activePlayersChart.getData().addAll(set);
+    }
 }
