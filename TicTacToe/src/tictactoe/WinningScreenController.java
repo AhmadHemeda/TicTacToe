@@ -6,6 +6,7 @@
 package tictactoe;
 
 import com.sun.jndi.dns.DnsContextFactory;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -39,15 +42,23 @@ public class WinningScreenController implements Initializable {
     private Scene scene;
     private int counter1=CounterTwoPlayers.getCounterPlayer1();
     private int counter2=CounterTwoPlayers.getCounterPlayer2();
-    
+     private File file;
+    private MediaPlayer mediaplayer;
+    private Media media;
     
     public void initialize(URL url, ResourceBundle rb) {
-       
+        file=new File("src\\Resources\\Videos\\test2.mp4 ");
+        media=new Media(file.toURI().toString());
+        mediaplayer=new MediaPlayer(media);
+        playingVedio.setMediaPlayer(mediaplayer);
+        mediaplayer.play();
+        
     }    
 
     @FXML
     private void playAgainButton(ActionEvent event) {
         try {
+            mediaplayer.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
             root = loader.load();
             
