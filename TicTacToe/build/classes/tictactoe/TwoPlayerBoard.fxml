@@ -259,6 +259,33 @@
                         </Button>
                      </children>
                   </GridPane>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fx:id="historyIcon1" fitHeight="30.0" fitWidth="100.0" translateX="220.0" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="@../Resources/images/history.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets right="30.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <Group GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="210.0" right="30.0" />
+                           </GridPane.margin>
+                           <children>
+                              <Button fx:id="historyButton" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#historyButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: transparent;" />
+                           </children>
+                        </Group>
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
          </children>

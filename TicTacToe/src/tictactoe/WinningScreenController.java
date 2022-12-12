@@ -25,6 +25,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.time.LocalTime;
 import LocalData.TwoGame;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class WinningScreenController implements Initializable {
    
@@ -43,8 +48,12 @@ public class WinningScreenController implements Initializable {
     private int counter2=CounterTwoPlayers.getCounterPlayer2();
     LocalDate date ;
     LocalTime time;
+   
+   
     public void initialize(URL url, ResourceBundle rb) {
+        
         getRow();
+        
     }    
 
     @FXML
@@ -73,21 +82,33 @@ public class WinningScreenController implements Initializable {
     private void exitButton(ActionEvent event) {
         Platform.exit();
     }
-    public void setWinnerNameText(String playerOneName){
-    this.winnerName.setText(playerOneName);
+    public void setWinnerNameText(String playerName){
+    this.winnerName.setText(playerName);
     
     }
+    
     public TwoGame getRow(){
-        
         String playerOneName=TwoPlayerName.getPlayerOne();
         String playerTwoName=TwoPlayerName.getPlayerTwo();
-        String winnerName=this.winnerName.getText();
+        TwoPlayerBoardController tpc=new TwoPlayerBoardController();
+        String winer=WinnerPlayer.getWinnerName();
         date=java.time.LocalDate.now();
         time=java.time.LocalTime.now();
         String timeString=time.toString();
         String timeSubString=timeString.substring(0,5);
-        TwoGame twoGame=new TwoGame(playerOneName,playerTwoName,date,winnerName,timeSubString);
+        TwoGame twoGame=new TwoGame(playerOneName,playerTwoName,date,winer,timeSubString);
+        
+        Path path=Paths.get("C:\\Users\\SOHA\\Desktop\\HistoryData.txt");
+        String data=playerOneName+","+playerTwoName+","+date+","+winer+","+timeSubString+".";
+        byte[] arr=data.getBytes();
+        try {
+            Files.write(path, arr, StandardOpenOption.APPEND);
+        }catch (IOException e) {
+            System.out.println("Invalid path");
+        }
+        
         return twoGame;
-    }    
+    }  
+    
  
 }

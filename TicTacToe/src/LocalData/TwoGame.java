@@ -43,7 +43,7 @@ public class TwoGame {
         this.playerTwoName = playerTwoName;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -65,7 +65,7 @@ public class TwoGame {
         return playerTwoName;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

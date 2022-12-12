@@ -1,4 +1,4 @@
-package tictactoe.history;
+package tictactoe;
 
 import java.net.URL;
 import java.sql.Date;
@@ -35,12 +35,12 @@ public class HistoryController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ID.setCellValueFactory(new PropertyValueFactory<User, Integer>("ID"));
-        date.setCellValueFactory(new PropertyValueFactory<User, Date>("date"));
-        dificulty.setCellValueFactory(new PropertyValueFactory<User, String>("dificulty"));
-        player.setCellValueFactory(new PropertyValueFactory<User, String>("player"));
-        time.setCellValueFactory(new PropertyValueFactory<User, Time>("time"));
-        winner.setCellValueFactory(new PropertyValueFactory<User, String>("winner"));
+//        ID.setCellValueFactory(new PropertyValueFactory<User, Integer>("ID"));
+//        date.setCellValueFactory(new PropertyValueFactory<User, Date>("date"));
+//        dificulty.setCellValueFactory(new PropertyValueFactory<User, String>("dificulty"));
+//        player.setCellValueFactory(new PropertyValueFactory<User, String>("player"));
+//        time.setCellValueFactory(new PropertyValueFactory<User, Time>("time"));
+//        winner.setCellValueFactory(new PropertyValueFactory<User, String>("winner"));
     }    
     
 }
