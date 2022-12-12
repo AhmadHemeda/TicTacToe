@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="861.0" fitWidth="1200.0">
          <image>
-            <Image url="@../Resources/images/back.png" />
+            <Image url="@../Resources/images/35backGround.png" />
          </image>
       </ImageView>
       <GridPane prefHeight="861.0" prefWidth="1200.0">
