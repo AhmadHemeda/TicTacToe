@@ -27,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.time.LocalTime;
 import LocalData.TwoGame;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,7 +51,10 @@ public class WinningScreenController implements Initializable {
     private int counter2=CounterTwoPlayers.getCounterPlayer2();
     LocalDate date ;
     LocalTime time;
-   
+    private File file;
+    private MediaPlayer mediaplayer;
+    private Media media;
+
    
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -61,6 +65,12 @@ public class WinningScreenController implements Initializable {
     @FXML
     private void playAgainButton(ActionEvent event) {
         try {
+             file=new File("src/Resources/videos/test2.mp4");
+        media=new Media(file.toURI().toString());
+        mediaplayer=new MediaPlayer(media);
+        playingVedio.setMediaPlayer(mediaplayer);
+        mediaplayer.play();
+        
             mediaplayer.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
             root = loader.load();
