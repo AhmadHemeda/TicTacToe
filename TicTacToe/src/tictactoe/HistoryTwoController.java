@@ -83,7 +83,7 @@ public class HistoryTwoController implements Initializable {
                 
                 observableList.add(new TwoGame(counter,game[2],game[4],game[0],game[1],game[3]));
                
-                table.setItems(observableList);
+                
                 counter++;
                 
             }
@@ -92,7 +92,7 @@ public class HistoryTwoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+        table.setItems(observableList);
     
     
     }
