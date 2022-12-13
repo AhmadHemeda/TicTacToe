@@ -13,7 +13,7 @@ import java.sql.Time;
  * @author SOHA
  */
 public class SingleGame {
-    private int gameID;
+    
     private String playerOneName;
     private String difficulty;
     private Date date;
@@ -23,8 +23,8 @@ public class SingleGame {
     public SingleGame() {
     }
 
-    public SingleGame(int gameID, String playerOneName, String difficulty, Date date, String winner, Time time) {
-        this.gameID = gameID;
+    public SingleGame( String playerOneName, String difficulty, Date date, String winner, Time time) {
+        
         this.playerOneName = playerOneName;
         this.difficulty = difficulty;
         this.date = date;
@@ -32,9 +32,7 @@ public class SingleGame {
         this.time = time;
     }
 
-    public int getGameID() {
-        return gameID;
-    }
+    
 
     public String getPlayerOneName() {
         return playerOneName;
@@ -56,9 +54,7 @@ public class SingleGame {
         return time;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
-    }
+    
 
     public void setPlayerOneName(String playerOneName) {
         this.playerOneName = playerOneName;

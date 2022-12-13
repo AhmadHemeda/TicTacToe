@@ -248,7 +248,7 @@ public class TwoPlayerBoardController implements Initializable {
     public void historyButton(ActionEvent event) {
 
        try {
-            root = FXMLLoader.load(getClass().getResource("History.fxml"));
+            root = FXMLLoader.load(getClass().getResource("HistoryTwo.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
