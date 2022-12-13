@@ -5,9 +5,6 @@
  */
 package LocalData;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
 
 /**
  *
@@ -15,23 +12,39 @@ import java.time.LocalDate;
  */
 public class TwoGame {
     
+    private int ID;
+    private String date;
+    private String time;
     private String playerOneName;
     private String playerTwoName;
-    private LocalDate date;
     private String winner;
-    private String time;
+    
 
     public TwoGame() {
     }
 
-    public TwoGame(String playerOneName, String playerTwoName, LocalDate date, String winner, String time) {
+    public TwoGame( int id,String date, String time, String playerOneName, String playerTwoName, String winner) {
         
+        this.ID=id;
+        this.date = date;
+        this.time = time;
         this.playerOneName = playerOneName;
         this.playerTwoName = playerTwoName;
-        this.date = date;
         this.winner = winner;
-        this.time = time;
+        
     }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+   
+
+    
 
     
 
@@ -43,7 +56,7 @@ public class TwoGame {
         this.playerTwoName = playerTwoName;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -65,7 +78,7 @@ public class TwoGame {
         return playerTwoName;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 

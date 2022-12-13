@@ -87,19 +87,19 @@ public class WinningScreenController implements Initializable {
     
     }
     
-    public TwoGame getRow(){
+    public void getRow(){
         String playerOneName=TwoPlayerName.getPlayerOne();
         String playerTwoName=TwoPlayerName.getPlayerTwo();
         TwoPlayerBoardController tpc=new TwoPlayerBoardController();
         String winer=WinnerPlayer.getWinnerName();
         date=java.time.LocalDate.now();
+        String dt=date.toString();
         time=java.time.LocalTime.now();
         String timeString=time.toString();
         String timeSubString=timeString.substring(0,5);
-        TwoGame twoGame=new TwoGame(playerOneName,playerTwoName,date,winer,timeSubString);
         
         Path path=Paths.get("C:\\Users\\SOHA\\Desktop\\HistoryData.txt");
-        String data=playerOneName+","+playerTwoName+","+date+","+winer+","+timeSubString+".";
+        String data=playerOneName+","+playerTwoName+","+dt+","+winer+","+timeSubString+"\n";
         byte[] arr=data.getBytes();
         try {
             Files.write(path, arr, StandardOpenOption.APPEND);
@@ -107,7 +107,6 @@ public class WinningScreenController implements Initializable {
             System.out.println("Invalid path");
         }
         
-        return twoGame;
     }  
     
  
