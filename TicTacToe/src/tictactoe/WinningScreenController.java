@@ -5,10 +5,10 @@
  */
 package tictactoe;
 
-import com.sun.jndi.dns.DnsContextFactory;
-import java.io.File;
+import LocalData.TwoGame;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,10 +25,16 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import java.time.LocalTime;
+import LocalData.TwoGame;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class WinningScreenController implements Initializable {
-
+   
     @FXML
     private MediaView playingVedio;
     @FXML
@@ -42,16 +48,13 @@ public class WinningScreenController implements Initializable {
     private Scene scene;
     private int counter1=CounterTwoPlayers.getCounterPlayer1();
     private int counter2=CounterTwoPlayers.getCounterPlayer2();
-     private File file;
-    private MediaPlayer mediaplayer;
-    private Media media;
-    
+    LocalDate date ;
+    LocalTime time;
+   
+   
     public void initialize(URL url, ResourceBundle rb) {
-        file=new File("src\\Resources\\Videos\\test2.mp4 ");
-        media=new Media(file.toURI().toString());
-        mediaplayer=new MediaPlayer(media);
-        playingVedio.setMediaPlayer(mediaplayer);
-        mediaplayer.play();
+        
+        getRow();
         
     }    
 
@@ -82,9 +85,33 @@ public class WinningScreenController implements Initializable {
     private void exitButton(ActionEvent event) {
         Platform.exit();
     }
-    public void setWinnerNameText(String playerOneName){
-    this.winnerName.setText(playerOneName);
+    public void setWinnerNameText(String playerName){
+    this.winnerName.setText(playerName);
     
     }
-
+    
+    public TwoGame getRow(){
+        String playerOneName=TwoPlayerName.getPlayerOne();
+        String playerTwoName=TwoPlayerName.getPlayerTwo();
+        TwoPlayerBoardController tpc=new TwoPlayerBoardController();
+        String winer=WinnerPlayer.getWinnerName();
+        date=java.time.LocalDate.now();
+        time=java.time.LocalTime.now();
+        String timeString=time.toString();
+        String timeSubString=timeString.substring(0,5);
+        TwoGame twoGame=new TwoGame(playerOneName,playerTwoName,date,winer,timeSubString);
+        
+        Path path=Paths.get("C:\\Users\\SOHA\\Desktop\\HistoryData.txt");
+        String data=playerOneName+","+playerTwoName+","+date+","+winer+","+timeSubString+".";
+        byte[] arr=data.getBytes();
+        try {
+            Files.write(path, arr, StandardOpenOption.APPEND);
+        }catch (IOException e) {
+            System.out.println("Invalid path");
+        }
+        
+        return twoGame;
+    }  
+    
+ 
 }

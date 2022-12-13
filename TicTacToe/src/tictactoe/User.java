@@ -1,4 +1,4 @@
-package tictactoe.history;
+package tictactoe;
 
 import java.sql.Date;
 import java.sql.Time;

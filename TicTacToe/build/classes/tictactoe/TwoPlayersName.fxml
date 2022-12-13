@@ -108,7 +108,7 @@
                         </TextField>
                      </children>
                   </GridPane>
-                  <Button fx:id="nextButton" mnemonicParsing="false" onAction="#NextButtonTwoPlayer" onKeyPressed="#NextButtonTwoPlayer" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Next" textFill="WHITE" translateX="238.5" translateY="-50.0" GridPane.rowIndex="3">
+                  <Button fx:id="nextButton" mnemonicParsing="false" onAction="#NextButtonTwoPlayer" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Next" textFill="WHITE" translateX="238.5" translateY="-50.0" GridPane.rowIndex="3">
                      <font>
                         <Font name="Book Antiqua" size="30.0" />
                      </font>
