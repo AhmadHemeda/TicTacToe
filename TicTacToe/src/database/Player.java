@@ -9,11 +9,16 @@ public class Player {
     public Player() {
     }
 
+    
+
     public Player(int ID, String mail, String password, String name) {
         this.ID = ID;
         this.mail = mail;
         this.password = password;
         this.name = name;
+    }
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public void setMail(String mail) {

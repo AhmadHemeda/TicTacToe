@@ -20,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -59,6 +61,7 @@ public class WinningScreenController implements Initializable {
     @FXML
     private void playAgainButton(ActionEvent event) {
         try {
+            mediaplayer.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
             root = loader.load();
             
