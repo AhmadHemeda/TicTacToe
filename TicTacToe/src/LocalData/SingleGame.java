@@ -14,22 +14,32 @@ import java.sql.Time;
  */
 public class SingleGame {
     
+    private int id;
     private String playerOneName;
     private String difficulty;
-    private Date date;
+    private String date;
     private String winner;
-    private Time time;
+    private String time;
 
     public SingleGame() {
     }
 
-    public SingleGame( String playerOneName, String difficulty, Date date, String winner, Time time) {
+    public SingleGame( int id,String playerOneName, String difficulty, String date, String winner, String time) {
         
+        this.id = id;
         this.playerOneName = playerOneName;
         this.difficulty = difficulty;
         this.date = date;
         this.winner = winner;
         this.time = time;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     
@@ -42,7 +52,7 @@ public class SingleGame {
         return difficulty;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -50,7 +60,7 @@ public class SingleGame {
         return winner;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -64,7 +74,7 @@ public class SingleGame {
         this.difficulty = difficulty;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -72,7 +82,7 @@ public class SingleGame {
         this.winner = winner;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

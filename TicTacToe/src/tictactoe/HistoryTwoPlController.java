@@ -12,76 +12,89 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author SOHA
  */
-public class HistoryTwoController implements Initializable {
+public class HistoryTwoPlController implements Initializable {
     private String line;
-    private ObservableList<TwoGame> observableList=FXCollections.observableArrayList();
+    private ObservableList<TwoGame> list=FXCollections.observableArrayList();
+    private int counter;
+
+    
 
     @FXML
-    private TableView<TwoGame> table;
+    private TableView<TwoGame> STable;
     @FXML
-    private TableColumn<TwoGame, Integer> idCol;
+    private TableColumn<TwoGame,Integer> idCol;
+    @FXML
+    private TableColumn<TwoGame,String> playerx;
+    @FXML
+    private TableColumn<TwoGame,String> playery;
+    @FXML
+    private TableColumn<TwoGame,String> winnerCol;
     @FXML
     private TableColumn<TwoGame,String> dateCol;
     @FXML
     private TableColumn<TwoGame,String> timeCol;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
-    private TableColumn<TwoGame, String> playerOneCol;
+    private Group back;
     @FXML
-    private TableColumn<TwoGame, String> playerTwoCol;
-    @FXML
-    private TableColumn<TwoGame, String> winnerCol;
+    private Button arrowBack;
 
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        gettingDataFromFile();
-    }    
-    public void gettingDataFromFile(){
+        gettingSDataFromFile();
+    }  
+    public void gettingSDataFromFile(){
         try {
             BufferedReader reader=new BufferedReader(new FileReader(new File("C:\\Users\\SOHA\\Desktop\\HistoryData.txt")));
             
-            Integer counter=new Integer(1);
+            counter=new Integer(1);
             while((line=reader.readLine())!=null){
                 String []game=line.split(",");
-               /* for(String i:game){
-                
-                    System.out.println(i);
-                
-                }
-                */
+               
                 
                 idCol.setCellValueFactory(new PropertyValueFactory<TwoGame,Integer>("ID"));
+                playerx.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("X"));
+                playery.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Y"));
+                winnerCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Winner"));
                 dateCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Date"));
                 timeCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Time"));
-                playerOneCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerOne"));
-                playerTwoCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerTwo"));
-                winnerCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Winner"));
                 
-                //TwoGame twoGame=new TwoGame(counter,game[2],game[4],game[0],game[1],game[3]);
-                //System.out.println(twoGame.getPlayerOneName());
                 
-                observableList.add(new TwoGame(counter,game[2],game[4],game[0],game[1],game[3]));
+                
+                
+                list.add(new TwoGame(counter,game[0],game[1],game[3],game[2],game[4]));
                
                 
                 counter++;
@@ -92,9 +105,32 @@ public class HistoryTwoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        table.setItems(observableList);
+       
+        STable.setItems(list);
     
     
     }
     
+    @FXML
+    public void backFromHist(ActionEvent event) {
+       try {
+            root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    
+
+    
+    
+    
 }
+ 
+    
+

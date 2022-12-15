@@ -185,6 +185,7 @@ public class SinglePlayerBoardController implements Initializable {
 
     private boolean isWon(String status) {
         if (status == "XXX" || status == "OOO") {
+            WinnerPlayer.setWinnerName(playerOneName.getText());
             return true;
         }
         return false;

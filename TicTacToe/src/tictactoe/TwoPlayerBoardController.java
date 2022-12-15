@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -244,19 +243,5 @@ public class TwoPlayerBoardController implements Initializable {
     public void setPlayerCounter2(int counter2) {
         this.playerTwoScoreBtn.setText(Integer.toString(counter2));
     }
-    @FXML
-    public void historyButton(ActionEvent event) {
-
-       try {
-            root = FXMLLoader.load(getClass().getResource("HistoryTwo.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        }
-    
 
 }

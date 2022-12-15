@@ -91,6 +91,19 @@ public class ScenesNavigator {
         stage.show();
 
     }
+    public void backFromHist(ActionEvent event) {
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("TwoPlayerName.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
     @FXML
     public void NextButtonTwoPlayer(ActionEvent event) {
@@ -170,6 +183,17 @@ public class ScenesNavigator {
         return this.textFieldPlayerName1.getText();
     }
 
-  
+     public void historyButton(ActionEvent event) {
+
+       try {
+            root = FXMLLoader.load(getClass().getResource("HistoryTwoPl.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
   
 }

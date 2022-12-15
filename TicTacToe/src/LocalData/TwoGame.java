@@ -13,24 +13,26 @@ package LocalData;
 public class TwoGame {
     
     private int ID;
-    private String date;
-    private String time;
+    
     private String playerOneName;
     private String playerTwoName;
     private String winner;
+    private String date;
+    private String time;
     
 
     public TwoGame() {
     }
 
-    public TwoGame( int id,String date, String time, String playerOneName, String playerTwoName, String winner) {
+    public TwoGame( int id,String playerOneName, String playerTwoName,  String winner,String date, String time) {
         
         this.ID=id;
-        this.date = date;
-        this.time = time;
         this.playerOneName = playerOneName;
         this.playerTwoName = playerTwoName;
         this.winner = winner;
+        this.date = date;
+        this.time = time;
+        
         
     }
 
