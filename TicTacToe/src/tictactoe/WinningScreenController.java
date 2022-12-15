@@ -68,6 +68,8 @@ public class WinningScreenController implements Initializable {
     @FXML
     private void playAgainButton(ActionEvent event) {
         try {
+            
+   
             mediaplayer.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
             root = loader.load();
@@ -108,7 +110,7 @@ public class WinningScreenController implements Initializable {
         String timeString=time.toString();
         String timeSubString=timeString.substring(0,5);
         
-        Path path=Paths.get("C:\\Users\\SOHA\\Desktop\\HistoryData.txt");
+        Path path=Paths.get("src/SystemFile/HistoryData.txt");
         String data=playerOneName+","+playerTwoName+","+dt+","+winer+","+timeSubString+"\n";
         byte[] arr=data.getBytes();
         try {
