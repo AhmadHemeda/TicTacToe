@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="barchart.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoeserver.ServerController">
    <children>
       <GridPane prefHeight="861.0" prefWidth="1200.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.0" minWidth="523.0" prefWidth="523.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.9865417480469" minWidth="10.0" prefWidth="709.9865417480469" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.0" minWidth="523.0" prefWidth="523.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.9865417480469" minWidth="10.0" prefWidth="709.9865417480469" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <Text fill="#92435f" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" text="Offline" GridPane.columnIndex="1">
                <GridPane.margin>
@@ -35,29 +35,29 @@
                </GridPane.margin>
             </Text>
             <BarChart fx:id="activePlayersChart" horizontalGridLinesVisible="false" verticalGridLinesVisible="false" GridPane.columnIndex="1">
-              <xAxis>
-                <CategoryAxis prefHeight="10.0" prefWidth="344.0" side="BOTTOM" style="-fx-background-color: #92435F;" tickLabelsVisible="false" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" />
-              </yAxis>
+               <xAxis>
+                  <CategoryAxis prefHeight="10.0" prefWidth="344.0" side="BOTTOM" style="-fx-background-color: #92435F;" tickLabelsVisible="false" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis minorTickVisible="false" opacity="0.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" />
+               </yAxis>
                <GridPane.margin>
                   <Insets bottom="220.0" left="150.0" right="150.0" top="220.0" />
                </GridPane.margin>
             </BarChart>
-            <Button fx:id="startServerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Start" textFill="WHITE" GridPane.columnIndex="1">
+            <Button fx:id="startServerButton" mnemonicParsing="false" onAction="#startButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Start" textFill="WHITE" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="200.0" top="600.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="stopServerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Stop" textFill="WHITE" GridPane.columnIndex="1">
+            <Button fx:id="stopServerButton" mnemonicParsing="false" onAction="#exitButton" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Stop" textFill="WHITE" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="350.0" top="600.0" />
                </GridPane.margin>
             </Button>
             <ImageView fitHeight="861.0" fitWidth="523.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Resources/images/background.png" />
+                  <Image url="@../Resources/Images/background.png" />
                </image>
             </ImageView>
          </children>

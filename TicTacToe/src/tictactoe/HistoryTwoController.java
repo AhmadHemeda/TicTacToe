@@ -59,7 +59,7 @@ public class HistoryTwoController implements Initializable {
     }    
     public void gettingDataFromFile(){
         try {
-            BufferedReader reader=new BufferedReader(new FileReader(new File("C:\\Users\\SOHA\\Desktop\\HistoryData.txt")));
+            BufferedReader reader=new BufferedReader(new FileReader(new File("src/SystemFile/HistoryData.txt")));
             
             Integer counter=new Integer(1);
             while((line=reader.readLine())!=null){
