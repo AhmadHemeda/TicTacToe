@@ -19,11 +19,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -48,10 +54,10 @@ public class HistoryTwoController implements Initializable {
     private TableColumn<TwoGame, String> playerTwoCol;
     @FXML
     private TableColumn<TwoGame, String> winnerCol;
-
-    /**
-     * Initializes the controller class.
-     */
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -59,17 +65,12 @@ public class HistoryTwoController implements Initializable {
     }    
     public void gettingDataFromFile(){
         try {
-            BufferedReader reader=new BufferedReader(new FileReader(new File("C:\\Users\\SOHA\\Desktop\\HistoryData.txt")));
+            BufferedReader reader=new BufferedReader(new FileReader(new File("src/SystemFile/HistoryData.txt")));
             
             Integer counter=new Integer(1);
             while((line=reader.readLine())!=null){
                 String []game=line.split(",");
-               /* for(String i:game){
-                
-                    System.out.println(i);
-                
-                }
-                */
+               
                 
                 idCol.setCellValueFactory(new PropertyValueFactory<TwoGame,Integer>("ID"));
                 dateCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Date"));
@@ -96,5 +97,19 @@ public class HistoryTwoController implements Initializable {
     
     
     }
+    @FXML
+    public void backArrow(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     
 }

@@ -5,23 +5,35 @@
  */
 package tictactoe;
 
+
 import LocalData.SingleGame;
+import LocalData.TwoGame;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -32,7 +44,7 @@ public class HistorySingleController implements Initializable {
     String line;
     ObservableList<SingleGame> list=FXCollections.observableArrayList();
     Integer counter;
-
+     
     @FXML
     private TableView<SingleGame> STable;
     @FXML
@@ -48,9 +60,9 @@ public class HistorySingleController implements Initializable {
     @FXML
     private TableColumn<SingleGame,String> timeSCol;
 
-    /**
-     * Initializes the controller class.
-     */
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gettingSDataFromFile();
@@ -64,7 +76,7 @@ public class HistorySingleController implements Initializable {
                 String []game=line.split(",");
                
                 
-                idSCol.setCellValueFactory(new PropertyValueFactory<SingleGame,Integer>("ID"));
+                  idSCol.setCellValueFactory(new PropertyValueFactory<SingleGame,Integer>("ID"));
                 playerSCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("PlayerName"));
                 difficultySCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("Difficulty"));
                 winnerSCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("Winner"));
@@ -75,19 +87,35 @@ public class HistorySingleController implements Initializable {
                 
                 
                 list.add(new SingleGame(counter,game[0],game[1],game[2],game[3],game[4]));
-               
+
                 
                 counter++;
                 
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
+
+            Logger.getLogger(HistorySingleController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HistorySingleController.class.getName()).log(Level.SEVERE, null, ex);
         }
         STable.setItems(list);
     
     
     }
+    @FXML
+    public void backArrow(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("SinglePlayerName.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(SinglePlayerNameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+
     
 }
