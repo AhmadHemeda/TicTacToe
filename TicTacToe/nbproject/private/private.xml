@@ -3,16 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SinglePlayerNameController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/TwoPlayersNameController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/WinningScreenSingleController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/RequestFromServ.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/LocalData/SingleGame.java</file>
             <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SinglePlayerBoardController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/HistoryTwoController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/WinningScreenController.java</file>
             <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/HistorySingleController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/HistorySingle.fxml</file>
             <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/TwoPlayerBoardController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/LoadingScreenController.java</file>
         </group>
     </open-files>
 </project-private>
