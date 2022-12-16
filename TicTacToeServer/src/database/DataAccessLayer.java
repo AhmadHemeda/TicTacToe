@@ -1,58 +1,85 @@
-
-
 package database;
 
-import database.Player;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.apache.derby.jdbc.ClientDriver;
 
-public class DataAccessLayer {
-     static public Player player;
-    public static Connection con;
-    static Statement stmt ;
-    static ResultSet rs;
-    static PreparedStatement prepStatement;
-    public static void  Connect() throws SQLException{
-        DriverManager.registerDriver(new ClientDriver());
-        con =DriverManager.getConnection("jdbc:derby://localhost:1527/Player","root","root");
-        SelectSQL();
+public class DataAccessLayer implements DBMethods {
+
+    static public Player player;
+    static Connection con;
+    Statement stmt;
+    static ResultSet resultSet;
+    static int resultStatement;
+    PreparedStatement prepStatment;
+
+    public DataAccessLayer() throws SQLException {
+        con = DataBaseConn.getConnection();
+        stmt = con.createStatement();
     }
-     public static void SelectSQL()throws SQLException{
-        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-        rs = stmt.executeQuery("select * from PLAYER");
+
+    @Override
+    public ArrayList<Player> getPlayers() {
+        ArrayList<Player> players = new ArrayList();
+        try {
+            prepStatment = con.prepareStatement("SELECT * FROM users");
+            resultSet = prepStatment.executeQuery();
+            while (resultSet.next()) {
+                players.add(new Player(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4)
+                ));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return players;
     }
-   
-   
-        public static boolean insertPlayer(Player play) throws SQLException{
-        prepStatement = con.prepareStatement("insert into PLAYER VALUES(?,?,?,?)");
-        prepStatement.setInt(1, play.getID());
-        prepStatement.setString(2, play.getMail());
-        prepStatement.setString(3, play.getPassword());
-        prepStatement.setString(4, play.getName());
-        
-       
-        return prepStatement.execute();
-     }
-        public static String checkLogin(String name,String password)throws SQLException{
-        String check="";
-        prepStatement = con.prepareStatement("select * from PLAYER WHERE NAME=? AND PASSWORD=? ");
-        prepStatement.setString(1, name);
-        prepStatement.setString(2, password);
-        prepStatement.executeQuery();
-        check="Found";
+
+    @Override
+    public String registerPlayer(Player player) {
+        String registerState = "register Not Success";
+        try {
+            prepStatment = con.prepareStatement("INSERT INTO ROOT.USERS VALUES(?,?,?,?)");
+            prepStatment.setInt(1, player.getID());
+            prepStatment.setString(2, player.getMail());
+            prepStatment.setString(3, player.getPassword());
+            prepStatment.setString(4, player.getName());
+
+            registerState = "register Success";
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return registerState;
+    }
+
+    @Override
+    public String loginPlayer(String Name, String password) {
+        String check = "NotFound";
+        try {
+            prepStatment = con.prepareStatement("SELECT * FROM users where username=? and password=?");
+            prepStatment.setString(1, Name);
+            prepStatment.setString(2, password);
+            resultSet = prepStatment.executeQuery();
+            while (resultSet.next()) {
+                check = "Found";
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return check;
     }
-     
+
 }

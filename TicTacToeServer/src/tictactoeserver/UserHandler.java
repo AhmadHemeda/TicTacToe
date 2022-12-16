@@ -19,13 +19,13 @@ public class UserHandler extends Thread {
 
     DataInputStream dis;
     PrintStream ps;
-    static Vector<UserHandler> userVector = new Vector<UserHandler>();
+    static Vector<UserHandler> playerVector = new Vector<UserHandler>();
 
     public UserHandler(Socket cs) {
         try {
             dis = new DataInputStream(cs.getInputStream());
             ps = new PrintStream(cs.getOutputStream());
-            UserHandler.userVector.add(this);
+            UserHandler.playerVector.add(this);
             start();
         } catch (IOException ex) {
             Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -34,17 +34,19 @@ public class UserHandler extends Thread {
 
     public UserHandler() {
     }
-    
+
     public void run() {
-        
+        String checkLogin;
         while (true) {
             String str;
             try {
                 str = dis.readLine();
-                String []data=str.split(",");
-                if(data[0].equals("login")){
-                   DataAccessLayer.checkLogin(data[1], data[2]);
-                
+                String[] data = str.split(",");
+                if (data[0].equals("login")) {
+                    DataAccessLayer dataAccess = new DataAccessLayer();
+                    checkLogin = dataAccess.loginPlayer(data[1], data[2]);
+                    sendMessageToAll(checkLogin);
+
                 }
                 sendMessageToAll(str);
             } catch (IOException ex) {
@@ -57,26 +59,27 @@ public class UserHandler extends Thread {
     }
 
     public void sendMessageToAll(String msg) {
-        for (int i = 0; i < userVector.size(); i++) {
-            userVector.get(i).ps.println(msg);
+        for (int i = 0; i < playerVector.size(); i++) {
+            playerVector.get(i).ps.println(msg);
+            //System.out.println(playerVector.get(i));
 
         }
 
     }
-    public void closeAll(){
+
+    public void closeAll() {
         try {
-            for (int i = 0; i < userVector.size(); i++) {
+            for (int i = 0; i < playerVector.size(); i++) {
                 {
-                 userVector.get(i).ps.close();
-                 userVector.get(i).dis.close();
-      
-                        }
-           
-            
-        } 
-    
-    
-    }   catch (IOException ex) {
+                    playerVector.get(i).ps.close();
+                    playerVector.get(i).dis.close();
+
+                }
+
+            }
+
+        } catch (IOException ex) {
             Logger.getLogger(UserHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-}}
+    }
+}

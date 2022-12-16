@@ -39,26 +39,25 @@ import javafx.stage.Stage;
  * @author SOHA
  */
 public class HistoryTwoPlController implements Initializable {
-    private String line;
-    private ObservableList<TwoGame> list=FXCollections.observableArrayList();
-    private int counter;
 
-    
+    private String line;
+    private ObservableList<TwoGame> list = FXCollections.observableArrayList();
+    private int counter;
 
     @FXML
     private TableView<TwoGame> STable;
     @FXML
-    private TableColumn<TwoGame,Integer> idCol;
+    private TableColumn<TwoGame, Integer> idCol;
     @FXML
-    private TableColumn<TwoGame,String> playerx;
+    private TableColumn<TwoGame, String> playerx;
     @FXML
-    private TableColumn<TwoGame,String> playery;
+    private TableColumn<TwoGame, String> playery;
     @FXML
-    private TableColumn<TwoGame,String> winnerCol;
+    private TableColumn<TwoGame, String> winnerCol;
     @FXML
-    private TableColumn<TwoGame,String> dateCol;
+    private TableColumn<TwoGame, String> dateCol;
     @FXML
-    private TableColumn<TwoGame,String> timeCol;
+    private TableColumn<TwoGame, String> timeCol;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -70,50 +69,44 @@ public class HistoryTwoPlController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gettingSDataFromFile();
-    }  
-    public void gettingSDataFromFile(){
+    }
+
+    public void gettingSDataFromFile() {
         try {
-            BufferedReader reader=new BufferedReader(new FileReader(new File("C:\\Users\\SOHA\\Desktop\\HistoryData.txt")));
-            
-            counter=new Integer(1);
-            while((line=reader.readLine())!=null){
-                String []game=line.split(",");
-               
-                
-                idCol.setCellValueFactory(new PropertyValueFactory<TwoGame,Integer>("ID"));
-                playerx.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("X"));
-                playery.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Y"));
-                winnerCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Winner"));
-                dateCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Date"));
-                timeCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Time"));
-                
-                
-                
-                
-                list.add(new TwoGame(counter,game[0],game[1],game[3],game[2],game[4]));
-               
-                
+            BufferedReader reader = new BufferedReader(new FileReader(new File("src/SystemFile/HistoryData.txt")));
+
+            counter = new Integer(1);
+            while ((line = reader.readLine()) != null) {
+                String[] game = line.split(",");
+
+                idCol.setCellValueFactory(new PropertyValueFactory<TwoGame, Integer>("ID"));
+                playerx.setCellValueFactory(new PropertyValueFactory<TwoGame, String>("playerOneName"));
+                playery.setCellValueFactory(new PropertyValueFactory<TwoGame, String>("playerTwoName"));
+                winnerCol.setCellValueFactory(new PropertyValueFactory<TwoGame, String>("Winner"));
+                dateCol.setCellValueFactory(new PropertyValueFactory<TwoGame, String>("Date"));
+                timeCol.setCellValueFactory(new PropertyValueFactory<TwoGame, String>("Time"));
+
+                list.add(new TwoGame(counter, game[0], game[1], game[3], game[2], game[4]));
+
                 counter++;
-                
+
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HistoryTwoPlController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HistoryTwoPlController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         STable.setItems(list);
-    
-    
+
     }
-    
+
     @FXML
     public void backFromHist(ActionEvent event) {
-       try {
+        try {
             root = FXMLLoader.load(getClass().getResource("TwoPlayersName.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,12 +118,4 @@ public class HistoryTwoPlController implements Initializable {
 
     }
 
-    
-
-    
-    
-    
 }
- 
-    
-

@@ -8,30 +8,24 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
 
-public class ServerController implements Initializable , Runnable {
+public class ServerController implements Initializable, Runnable {
 
     @FXML
     private BarChart<?, ?> activePlayersChart;
     private boolean isClosedBefore = false;
     private boolean isStartedBefore = false;
-    private boolean isOpened= false;
+    private boolean isOpened = false;
     static ServerSocket serverSocket;
     static Thread thread;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -42,30 +36,29 @@ public class ServerController implements Initializable , Runnable {
 
         activePlayersChart.getData().addAll(set);
     }
-        @Override
-        public void run() {
-            try {
 
-                serverSocket = new ServerSocket(5005);
-                while (true) {
-                   
-                    Socket s = serverSocket.accept();
-                    
-                    new UserHandler(s);
+    @Override
+    public void run() {
+        try {
 
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
+            serverSocket = new ServerSocket(5005);
+            while (true) {
+
+                Socket s = serverSocket.accept();
+
+                new UserHandler(s);
+
             }
-
+        } catch (IOException ex) {
+            Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-     
+
+    }
 
     public void exitButton(ActionEvent event) {
-        isOpened=false;
+        isOpened = false;
         thread.suspend();
-         System.out.println("closed");
+        System.out.println("closed");
 //        try {
 //            
 //            serverSocket.close();
@@ -84,35 +77,28 @@ public class ServerController implements Initializable , Runnable {
 //        }
     }
 
-   
     public void startButton(ActionEvent event) {
-        if (isStartedBefore==false) {
-             System.out.println("server is working");
+        if (isStartedBefore == false) {
+            System.out.println("server is working");
             thread = new Thread(this);
             thread.start();
-            isStartedBefore=true;
-            isOpened=true;
-            
-        } 
-        
-        else if(isStartedBefore==true && isOpened==false){
-             System.out.println("server is working");
-        thread.resume();
-        isOpened=true;
-        
-        }
-        else if(isStartedBefore==true&&isOpened==true)
-        {
-        
-        
-         Alert a = new Alert(Alert.AlertType.WARNING);
+            isStartedBefore = true;
+            isOpened = true;
+
+        } else if (isStartedBefore == true && isOpened == false) {
+            System.out.println("server is working");
+            thread.resume();
+            isOpened = true;
+
+        } else if (isStartedBefore == true && isOpened == true) {
+
+            Alert a = new Alert(Alert.AlertType.WARNING);
             a.setHeaderText("Already Started !");
             a.setTitle("Pay Attention");
             Optional<ButtonType> result = a.showAndWait();
-        
-        
+
         }
-        
+
     }
 
-}   
+}

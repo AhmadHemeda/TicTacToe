@@ -81,9 +81,9 @@ public class HistorySingleController implements Initializable {
                 
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HistoryTwoPlController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(HistoryTwoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HistoryTwoPlController.class.getName()).log(Level.SEVERE, null, ex);
         }
         STable.setItems(list);
     
