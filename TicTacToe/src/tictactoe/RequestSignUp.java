@@ -2,38 +2,28 @@ package tictactoe;
 
 public class RequestSignUp {
 
-    private String name;
-    private String email;
-    private String password;
+    public static boolean CheckSignValidation(String name, String mail, String pass, String confPass) {
+        boolean valid;
+        if (name != null && mail != null && pass != null && confPass != null) {
+            valid = true;
 
-    public RequestSignUp(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
+        } else {
+            valid = false;
+
+        }
+        return valid;
     }
 
-    public String getName() {
-        return name;
-    }
+    public static boolean CheckPasswordValidation(String pass, String confPass) {
+        boolean valid;
+        if (pass.equals(confPass)) {
+            valid = true;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        } else {
+            valid = false;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        }
+        return valid;
     }
     
     

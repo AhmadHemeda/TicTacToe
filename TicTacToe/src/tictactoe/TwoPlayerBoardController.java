@@ -2,6 +2,7 @@ package tictactoe;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -11,9 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -30,8 +34,6 @@ public class TwoPlayerBoardController implements Initializable {
     private Button playerOneScoreBtn;
     @FXML
     private Button playerTwoScoreBtn;
-    @FXML
-    private ImageView historyIcon;
     @FXML
     private Button btn11;
     @FXML
@@ -83,7 +85,12 @@ public class TwoPlayerBoardController implements Initializable {
 
     @FXML
     private void homeButton(ActionEvent event) {
+Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                a.setHeaderText("The game will not be saved");
+                a.setTitle("Exit Game!");
+                Optional<ButtonType> result = a.showAndWait();
 
+                if (result.get() == ButtonType.OK){
         try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
         } catch (IOException ex) {
@@ -93,12 +100,18 @@ public class TwoPlayerBoardController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+                }
     }
 
     @FXML
     private void exitButton(ActionEvent event) {
-        Platform.exit();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                a.setHeaderText("The game will not be saved");
+                a.setTitle("Exit Game!");
+                Optional<ButtonType> result = a.showAndWait();
+
+                if (result.get() == ButtonType.OK)
+                    Platform.exit();
     }
 
     private void setUpButton(Button button) {
@@ -112,8 +125,10 @@ public class TwoPlayerBoardController implements Initializable {
                     root = loader.load();
                     WinningScreenController winningSceneController = loader.getController();
                     if (stat.equals("XXX")) {
+                       
                         winningSceneController.setWinnerNameText(playerOneName.getText());
                     } else {
+                         
                         winningSceneController.setWinnerNameText(playerTwoName.getText());
                     }
                     stage = (Stage) ((Button) MouseEvent.getSource()).getScene().getWindow();
@@ -243,5 +258,19 @@ public class TwoPlayerBoardController implements Initializable {
     public void setPlayerCounter2(int counter2) {
         this.playerTwoScoreBtn.setText(Integer.toString(counter2));
     }
+
+    public void historyButton(ActionEvent event) {
+
+       try {
+            root = FXMLLoader.load(getClass().getResource("HistoryTwo.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+   
 
 }

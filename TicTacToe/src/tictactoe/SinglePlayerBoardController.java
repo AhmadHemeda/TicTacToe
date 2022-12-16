@@ -3,6 +3,7 @@ package tictactoe;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -12,9 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -57,9 +61,9 @@ public class SinglePlayerBoardController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    private int counterPlayer1 = 0;
-    private int counterPlayer2 = 0;
+    private String winner;
+     private int counterPlayer1 = CounterTwoPlayers.getCounterPlayer1();
+    private int counterPlayer2 = CounterTwoPlayers.getCounterPlayer2();
     private int counterclicked = 0;
 
     Vector<Button> buttons;
@@ -83,8 +87,14 @@ public class SinglePlayerBoardController implements Initializable {
 
     @FXML
     private void homeButton(ActionEvent event) {
+          Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                a.setHeaderText("The game will not be saved");
+                a.setTitle("Exit Game!");
+                Optional<ButtonType> result = a.showAndWait();
 
-        try {
+                if (result.get() == ButtonType.OK) {
+
+                    try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,26 +104,58 @@ public class SinglePlayerBoardController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
+                }
+        
+       
     }
 
     @FXML
     private void exitButton(ActionEvent event) {
-        Platform.exit();
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+                a.setHeaderText("The game will not be saved");
+                a.setTitle("Exit Game!");
+                Optional<ButtonType> result = a.showAndWait();
+
+                if (result.get() == ButtonType.OK) {
+
+                    Platform.exit();
+                }
+        
     }
 
     @FXML
     private void setUpButton(ActionEvent e) {
-
+        String stat;
         counterclicked++;
 
         Button button = (Button) e.getSource();
         button.setText("X");
         button.setDisable(true);
         ComputerMove();
-        checkGameOver();
+        stat = checkGameOver();
+        if (stat.equals("XXX") || stat.equals("OOO")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("WinningScreenSingle.fxml"));
+                root = loader.load();
+                WinningScreenSingleController winningSceneController = loader.getController();
+                if (stat.equals("XXX")) {
+                   
+                    winningSceneController.setWinnerNameText("Congratulations \t"+playerOneName.getText());
+                } else {
+                   
+                    winningSceneController.setWinnerNameText("You Lose!");
+                }
+                stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(SinglePlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
+        }
     }
-    
+
     private void ComputerMove() {
         int randomMove = (int) (Math.random() * (9 - counterclicked)) + 1;
         for (Button button : buttons) {
@@ -129,7 +171,8 @@ public class SinglePlayerBoardController implements Initializable {
         counterclicked++;
     }
 
-    private void checkGameOver() {
+    private String checkGameOver() {
+        String stat = "";
         for (int i = 0; i < 8; i++) {
             String gameStatus;
             switch (i) {
@@ -164,23 +207,28 @@ public class SinglePlayerBoardController implements Initializable {
             }
 
             if (gameStatus.equals("XXX")) {
-
-                counterPlayer1 = parseInt(playerOneScoreBtn.getText());
                 counterPlayer1++;
+                CounterTwoPlayers.setCounterPlayer1(counterPlayer1);
+                WinnerPlayer.setWinnerName(playerOneName.getText());
                 playerOneScoreBtn.setText(Integer.toString(counterPlayer1));
                 restartGame();
+                return gameStatus;
 
             }
             if (gameStatus.equals("OOO")) {
-                counterPlayer2 = parseInt(playerTwoScoreBtn.getText());
                 counterPlayer2++;
+                CounterTwoPlayers.setCounterPlayer2(counterPlayer2);
+                WinnerPlayer.setWinnerName(playerTwoName.getText());
                 playerTwoScoreBtn.setText(Integer.toString(counterPlayer2));
                 restartGame();
+                return gameStatus;
+
             }
             if (isWon(gameStatus) == false && isfull() == true) {
                 restartGame();
             }
         }
+        return stat;
     }
 
     private boolean isWon(String status) {
@@ -215,4 +263,19 @@ public class SinglePlayerBoardController implements Initializable {
 
     }
 
+    public void setPlayerOneNameText(String playerOneName) {
+        this.playerOneName.setText(playerOneName);
+    }
+
+    public void setPlayerTwoNameText(String playerTwoName) {
+        this.playerTwoName.setText(playerTwoName);
+    }
+
+    public void setPlayerCounter1(int counter1) {
+        this.playerOneScoreBtn.setText(Integer.toString(counter1));
+    }
+
+    public void setPlayerCounter2(int counter2) {
+        this.playerTwoScoreBtn.setText(Integer.toString(counter2));
+    }
 }

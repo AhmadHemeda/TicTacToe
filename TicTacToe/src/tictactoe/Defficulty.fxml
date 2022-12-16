@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ScenesNavigator">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.DefficultyController">
    <children>
       <GridPane prefHeight="861.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -54,7 +54,7 @@
                               <Font name="Book Antiqua" size="30.0" />
                            </font>
                         </Button>
-                        <Button fx:id="twoPlayerButton" alignment="CENTER" layoutX="60.0" layoutY="30.0" mnemonicParsing="false" prefHeight="260.0" prefWidth="437.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Hard" textFill="WHITE" GridPane.rowIndex="1">
+                        <Button fx:id="twoPlayerButton" alignment="CENTER" layoutX="60.0" layoutY="30.0" mnemonicParsing="false" onAction="#hardButton" prefHeight="260.0" prefWidth="437.0" style="-fx-background-color: #92435F; -fx-background-radius: 100; -fx-border-radius: 100;" text="Hard" textFill="WHITE" GridPane.rowIndex="1">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -99,7 +99,7 @@
                      <children>
                         <ImageView fx:id="arrowBack" fitHeight="30.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Resources/images/back.png" />
+                              <Image url="@../Resources/images/backSinglePlayer.png" />
                            </image>
                            <GridPane.margin>
                               <Insets left="20.0" />
