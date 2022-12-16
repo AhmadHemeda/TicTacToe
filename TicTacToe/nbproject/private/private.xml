@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/RequestLogin.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SignUpConnection.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/ScenesNavigator.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/RequestSignUp.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/database/Steps.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/RequestFromServ.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/database/DataAccessLayer.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SignUpController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/WinningScreenController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/database/Game.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/database/Player.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SinglePlayerNameController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/TwoPlayersNameController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/WinningScreenSingleController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SinglePlayerBoardController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/HistoryTwoController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/HistorySingleController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/HistorySingle.fxml</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/TwoPlayerBoardController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/LoadingScreenController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -42,14 +42,29 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SignUpConnection.Connect("127.0.0.1");
+        SignUpConnection.Connect("10.178.240.134");
+        
         
     }
 
     @FXML
     private void signUpButton(ActionEvent event) {
+        
+        if(RequestSignUp.CheckSignValidation(nameField.getText(),
+                emailField.getText(),
+                passwordField.getText(),
+                passwordFieldConfimation.getText())==true)
+            if(RequestSignUp.CheckPasswordValidation(passwordField.getText(),
+                passwordFieldConfimation.getText())==true){
+            
+                    SignUpConnection.writeData(nameField.getText(),
+                    emailField.getText(),
+                    passwordField.getText());
+            
+            
+            }
         try {
-            RequestSignUp requestSignUp=new RequestSignUp(nameField.getText(), emailField.getText(), passwordField.getText()); 
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TwoPlayerBoard.fxml"));
             root = loader.load();    
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();

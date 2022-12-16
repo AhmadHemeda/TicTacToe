@@ -26,13 +26,14 @@ public class SignUpConnection {
         } catch (IOException ex) {
             Logger.getLogger(SignUpConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }
    
-    public static void writeData(RequestSignUp requestSignUp) {
+    public static void writeData(String name,String mail, String password) {
         try {
             
             
-            String playerInfo="signUp"+requestSignUp.getName()+","+requestSignUp.getEmail()+","+requestSignUp.getPassword();
+            String playerInfo="signUp"+","+name+","+mail+","+password;
             ps.println(playerInfo);
             String server = dis.readLine();
         } catch (IOException ex) {

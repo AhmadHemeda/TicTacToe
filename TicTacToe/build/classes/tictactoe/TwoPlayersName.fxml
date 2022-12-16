@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ScenesNavigator">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.TwoPlayersNameController">
    <children>
       <GridPane prefHeight="861.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -44,38 +44,6 @@
                         <Image url="@../Resources/images/SinglePlayer%20.png" />
                      </image>
                   </ImageView>
-                  <GridPane>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                        <ImageView fx:id="historyIcon" fitHeight="30.0" fitWidth="100.0" translateX="220.0" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../Resources/images/history.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets right="30.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <Group>
-                           <children>
-                              <Button fx:id="backButton" mnemonicParsing="false" onAction="#backArrow" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent;">
-                                 <padding>
-                                    <Insets left="20.0" />
-                                 </padding>
-                              </Button>
-                           </children>
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                        </Group>
-                     </children>
-                  </GridPane>
                   <GridPane prefHeight="146.0" prefWidth="678.0" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="178.0" />
@@ -113,6 +81,43 @@
                         <Font name="Book Antiqua" size="30.0" />
                      </font>
                   </Button>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="100.0" translateX="220.0" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="@../Resources/images/Group%2023historyTwoPlayer.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets right="30.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <Group translateX="220.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button fx:id="historyIcon" mnemonicParsing="false" onAction="#historyTwoPlayer" opacity="0.0" prefHeight="30.0" prefWidth="100.0" />
+                           </children>
+                        </Group>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/images/backTwoPlayers.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="backButton1" mnemonicParsing="false" onAction="#backArrow" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: transparent;" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Group>
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
          </children>
