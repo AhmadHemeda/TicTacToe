@@ -14,6 +14,10 @@ public class Steps {
         this.text = text;
     }
 
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
+
     public void setButton(String button) {
         this.button = button;
     }

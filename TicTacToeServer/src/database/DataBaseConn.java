@@ -7,6 +7,7 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.derby.jdbc.ClientDriver;
 
@@ -30,6 +31,7 @@ public class DataBaseConn {
         }
         return con;
     }
+    
 
     public static void closeConnection() throws SQLException {
         if (con != null) {
