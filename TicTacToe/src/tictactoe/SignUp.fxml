@@ -53,7 +53,7 @@
                         <Insets bottom="120.0" left="260.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <Button fx:id="signUpButton" mnemonicParsing="false" style="-fx-background-color: #ff925b; -fx-border-radius: 100; -fx-background-radius: 100;" text="Sign Up" textFill="WHITE" GridPane.rowIndex="6">
+                  <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUpButton" style="-fx-background-color: #ff925b; -fx-border-radius: 100; -fx-background-radius: 100;" text="Sign Up" textFill="WHITE" GridPane.rowIndex="6">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -77,6 +77,11 @@
                         <Insets bottom="100.0" left="430.0" />
                      </GridPane.margin>
                   </Text>
+                  <Button fx:id="LoginSwitch" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: transparent;" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets bottom="100.0" left="430.0" />
+                     </GridPane.margin>
+                  </Button>
                   <GridPane GridPane.rowIndex="4">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
@@ -192,6 +197,11 @@
                         </TextField>
                      </children>
                   </GridPane>
+                  <Button fx:id="backButton" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#backButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;">
+                     <GridPane.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
             </GridPane>
          </children>

@@ -30,7 +30,7 @@ public class RequestFromServ {
             dis = new DataInputStream(userSockect.getInputStream());
             ps = new PrintStream(userSockect.getOutputStream());
         } catch (IOException ex) {
-            Logger.getLogger(SignUpConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -3,28 +3,21 @@ package tictactoe;
 
 
 public class RequestLogin {
-private String name;
-private String password;
 
-    public RequestLogin(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public static boolean checkLoginValidation(String username, String password) {
+        boolean valid;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        if (username != null && password != null) {
+            valid = true;
+        } else {
+            valid = false;
+        }
+        
+        return valid;
     }
 
 }
+
+

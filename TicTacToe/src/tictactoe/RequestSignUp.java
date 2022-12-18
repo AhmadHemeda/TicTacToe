@@ -4,11 +4,11 @@ public class RequestSignUp {
 
     public static boolean CheckSignValidation(String name, String mail, String pass, String confPass) {
         boolean valid;
-        if (name != null && mail != null && pass != null && confPass != null) {
-            valid = true;
+        if (name == null || mail == null || pass == null || confPass ==null) {
+            valid = false;
 
         } else {
-            valid = false;
+            valid = true;
 
         }
         return valid;

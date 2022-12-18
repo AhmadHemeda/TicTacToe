@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/RequestFromServ.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/LocalData/SingleGame.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SinglePlayerBoardController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/WinningScreenController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/HistorySingleController.java</file>
-            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/TwoPlayerBoardController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/RequestLogin.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/ScenesNavigator.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/RequestSignUp.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/ServerConnection.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/CallBackServerSocket.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/SignUpController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/CallBackSocketConditions.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/LogInController.java</file>
+            <file>file:/C:/Users/noha%20Ali/OneDrive/Desktop/JavaProjectTicTacToe/TicTacToe/TicTacToe/src/tictactoe/ChoosingModeSceneController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -75,8 +75,8 @@ public class HistoryTwoController implements Initializable {
                 idCol.setCellValueFactory(new PropertyValueFactory<TwoGame,Integer>("ID"));
                 dateCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Date"));
                 timeCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Time"));
-                playerOneCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerOne"));
-                playerTwoCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerTwo"));
+                playerOneCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerOneName"));
+                playerTwoCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerTwoName"));
                 winnerCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Winner"));
                 
                 //TwoGame twoGame=new TwoGame(counter,game[2],game[4],game[0],game[1],game[3]);

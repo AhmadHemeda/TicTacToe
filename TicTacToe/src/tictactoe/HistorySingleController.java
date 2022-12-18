@@ -5,7 +5,7 @@
  */
 package tictactoe;
 
-import LocalData.TwoGame;
+import LocalData.SingleGame;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,22 +38,22 @@ import javafx.stage.Stage;
  */
 public class HistorySingleController implements Initializable {
     String line;
-    ObservableList<TwoGame> observableList=FXCollections.observableArrayList();
+    ObservableList<SingleGame> observableList=FXCollections.observableArrayList();
 
     @FXML
-    private TableView<TwoGame> table;
+    private TableView<SingleGame> table;
     @FXML
-    private TableColumn<TwoGame, Integer> idCol;
+    private TableColumn<SingleGame, Integer> idCol;
     @FXML
-    private TableColumn<TwoGame,String> dateCol;
+    private TableColumn<SingleGame,String> dateCol;
     @FXML
-    private TableColumn<TwoGame,String> timeCol;
+    private TableColumn<SingleGame,String> timeCol;
     @FXML
-    private TableColumn<TwoGame, String> playerOneCol;
+    private TableColumn<SingleGame, String> playerOneCol;
     @FXML
-    private TableColumn<TwoGame, String> playerTwoCol;
+    private TableColumn<SingleGame, String> playerTwoCol;
     @FXML
-    private TableColumn<TwoGame, String> winnerCol;
+    private TableColumn<SingleGame, String> winnerCol;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -72,17 +72,19 @@ public class HistorySingleController implements Initializable {
                 String []game=line.split(",");
                
                 
-                idCol.setCellValueFactory(new PropertyValueFactory<TwoGame,Integer>("ID"));
-                dateCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Date"));
-                timeCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Time"));
-                playerOneCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerOne"));
-                playerTwoCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("PlayerTwo"));
-                winnerCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Winner"));
+                idCol.setCellValueFactory(new PropertyValueFactory<SingleGame,Integer>("id"));
+                playerOneCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("PlayerOneName"));
+                playerTwoCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("difficulty"));
+                timeCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("Time"));
+                dateCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("Date"));
+                winnerCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("Winner"));
+                
+                
                 
                 //TwoGame twoGame=new TwoGame(counter,game[2],game[4],game[0],game[1],game[3]);
                 //System.out.println(twoGame.getPlayerOneName());
                 
-                observableList.add(new TwoGame(counter,game[2],game[4],game[0],game[1],game[3]));
+                observableList.add(new SingleGame(counter,game[0],game[1],game[4],game[3],game[2]));
                
                 
                 counter++;
