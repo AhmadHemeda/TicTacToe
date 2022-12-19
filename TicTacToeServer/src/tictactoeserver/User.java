@@ -82,7 +82,7 @@ public class User extends Thread {
 
     public String checkRequestType(String msg) {
 
-        String checkLogin ="LoginNotFound";
+        String checkLogin ="DataBaseNotConnected";
         String[] data = msg.split(",");
 
         if (data[0].equals("login")) {
