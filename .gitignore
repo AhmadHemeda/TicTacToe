@@ -29,3 +29,5 @@ hs_err_pid*
 /Demo/nbproject/private/
 /Demo/build/
 /Demo/dist/
+/TicTacToeServer/build/
+/TicTacToeServer/dist/
