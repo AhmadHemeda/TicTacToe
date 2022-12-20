@@ -240,6 +240,12 @@
                         </Button>
                      </children>
                   </GridPane>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" translateX="617.0">
+                     <image>
+                        <Image url="@../Resources/images/exit.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="startRecordBtn" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#startRecord" opacity="0.0" prefHeight="40.0" prefWidth="40.0" text="Button" translateX="617.0" />
                </children>
             </GridPane>
          </children>

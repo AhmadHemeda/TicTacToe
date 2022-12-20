@@ -1,14 +1,24 @@
 package tictactoe;
 
+import LocalData.SingleGame;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +29,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -33,8 +42,6 @@ public class SinglePlayerBoardController implements Initializable {
     private Button playerOneScoreBtn;
     @FXML
     private Button playerTwoScoreBtn;
-    @FXML
-    private ImageView historyIcon;
     @FXML
     private Button btn11;
     @FXML
@@ -62,13 +69,21 @@ public class SinglePlayerBoardController implements Initializable {
     private Scene scene;
     private Parent root;
     private String winner;
-     private int counterPlayer1 = CounterTwoPlayers.getCounterPlayer1();
+    private int counterPlayer1 = CounterTwoPlayers.getCounterPlayer1();
     private int counterPlayer2 = CounterTwoPlayers.getCounterPlayer2();
     private int counterclicked = 0;
+    private static boolean gameStarted = false;
 
     Vector<Button> buttons;
-
     @FXML
+    private Button startRecordBtn;
+    RecState record = new RecState();
+    private String line;
+    private int counter=1;
+    private ObservableList<SingleGame> observableList = FXCollections.observableArrayList();
+
+    String stepsRec = "";
+
     public void initialize(URL url, ResourceBundle rb) {
         buttons = new Vector<Button>();
         buttons.add(btn11);
@@ -87,72 +102,84 @@ public class SinglePlayerBoardController implements Initializable {
 
     @FXML
     private void homeButton(ActionEvent event) {
-          Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-                a.setHeaderText("The game will not be saved");
-                a.setTitle("Exit Game!");
-                Optional<ButtonType> result = a.showAndWait();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("The game will not be saved");
+        a.setTitle("Exit Game!");
+        Optional<ButtonType> result = a.showAndWait();
 
-                if (result.get() == ButtonType.OK) {
+        if (result.get() == ButtonType.OK) {
 
-                    try {
-            root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
         }
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 
-                }
-        
-       
     }
 
     @FXML
     private void exitButton(ActionEvent event) {
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-                a.setHeaderText("The game will not be saved");
-                a.setTitle("Exit Game!");
-                Optional<ButtonType> result = a.showAndWait();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("The game will not be saved");
+        a.setTitle("Exit Game!");
+        Optional<ButtonType> result = a.showAndWait();
 
-                if (result.get() == ButtonType.OK) {
+        if (result.get() == ButtonType.OK) {
 
-                    Platform.exit();
-                }
-        
+            Platform.exit();
+        }
+
+    }
+
+    @FXML
+    private void startRecord(ActionEvent event) {
+
+        record.setRecState(true);
+
     }
 
     @FXML
     private void setUpButton(ActionEvent e) {
-        String stat;
-        counterclicked++;
-
-        Button button = (Button) e.getSource();
-        button.setText("X");
-        button.setDisable(true);
-        ComputerMove();
-        stat = checkGameOver();
-        if (stat.equals("XXX") || stat.equals("OOO")) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("WinningScreenSingle.fxml"));
-                root = loader.load();
-                WinningScreenSingleController winningSceneController = loader.getController();
-                if (stat.equals("XXX")) {
-                   
-                    winningSceneController.setWinnerNameText("Congratulations \t"+playerOneName.getText());
-                } else {
-                   
-                    winningSceneController.setWinnerNameText("You Lose!");
+        try {
+            String stat;
+            counterclicked++;
+            gameStarted = true;
+            Button button = (Button) e.getSource();
+            button.setText("X");
+            stepsRec = stepsRec + getIdGame() + "," + button.getId().toString() + "," + button.getText().toString() + "\n";
+            System.out.println(stepsRec);
+            button.setDisable(true);
+            ComputerMove();
+            stat = checkGameOver();
+            if (stat.equals("XXX") || stat.equals("OOO")) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("WinningScreenSingle.fxml"));
+                    root = loader.load();
+                    WinningScreenSingleController winningSceneController = loader.getController();
+                    if (stat.equals("XXX")) {
+                        
+                        winningSceneController.setWinnerNameText("Congratulations \t" + playerOneName.getText());
+                    } else {
+                        
+                        winningSceneController.setWinnerNameText("You Lose!");
+                    }
+                    stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(SinglePlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(SinglePlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SinglePlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -162,9 +189,15 @@ public class SinglePlayerBoardController implements Initializable {
             if (button.getText().equals("")) {
                 randomMove--;
                 if (randomMove == 0) {
-                    button.setText("O");
-                    button.setDisable(true);
-                    break;
+                    try {
+                        button.setText("O");
+                        stepsRec = stepsRec + getIdGame()+ "," + button.getId().toString() + "," + button.getText().toString() + "\n";
+                        System.out.println(stepsRec);
+                        button.setDisable(true);
+                        break;
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(SinglePlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }
@@ -233,6 +266,8 @@ public class SinglePlayerBoardController implements Initializable {
 
     private boolean isWon(String status) {
         if (status == "XXX" || status == "OOO") {
+            
+
             return true;
         }
         return false;
@@ -242,6 +277,7 @@ public class SinglePlayerBoardController implements Initializable {
     private boolean isfull() {
         for (int i = 0; i < 8; i++) {
             if (buttons.get(i).getText() == "") {
+                gameStarted = false;
                 return false;
             }
         }
@@ -252,13 +288,27 @@ public class SinglePlayerBoardController implements Initializable {
     private void restartGame() {
 
         buttons.forEach(this::resetButton);
+        if (record.isRecState() == true) {
+
+            Path path = Paths.get("src/SystemFile/RecordedSteps.txt");
+            byte[] arr = stepsRec.getBytes();
+            try {
+                Files.write(path, arr, StandardOpenOption.APPEND);
+            } catch (IOException e) {
+                System.out.println("Invalid path");
+            }
+
+        }
 
     }
 
     public void resetButton(Button button) {
+        
         counterclicked = 0;
         button.setDisable(false);
         button.setText("");
+        gameStarted = false;
+        startRecordBtn.setVisible(true);
 
     }
 
@@ -277,4 +327,27 @@ public class SinglePlayerBoardController implements Initializable {
     public void setPlayerCounter2(int counter2) {
         this.playerTwoScoreBtn.setText(Integer.toString(counter2));
     }
+
+    public boolean isRecord() {
+        return record.isRecState();
+    }
+
+    public int getIdGame() throws FileNotFoundException {
+        int gameNum = 0;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File("src/SystemFile/RecordedGame.txt")));
+
+            Integer counter = new Integer(1);
+            while ((line = reader.readLine()) != null) {
+                String[] game = line.split(",");
+                gameNum++;
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(SinglePlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ++gameNum;
+
+    }
+
 }

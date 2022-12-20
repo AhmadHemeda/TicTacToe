@@ -57,6 +57,7 @@ public class HistoryTwoController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    public static int gameTwoNum;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,7 +71,7 @@ public class HistoryTwoController implements Initializable {
             Integer counter=new Integer(1);
             while((line=reader.readLine())!=null){
                 String []game=line.split(",");
-               
+                gameTwoNum++;
                 
                 idCol.setCellValueFactory(new PropertyValueFactory<TwoGame,Integer>("ID"));
                 dateCol.setCellValueFactory(new PropertyValueFactory<TwoGame,String>("Date"));

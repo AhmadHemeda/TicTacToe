@@ -90,6 +90,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
+                        <Group translateX="80.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button fx:id="savedRecTwo" maxHeight="50.0" maxWidth="120.0" minHeight="50.0" minWidth="120.0" mnemonicParsing="false" onAction="#recordHistory" opacity="0.0" prefHeight="50.0" prefWidth="120.0" translateX="80.0" />
+                           </children>
+                        </Group>
                         <ImageView fitHeight="30.0" fitWidth="100.0" translateX="220.0" GridPane.columnIndex="1">
                            <image>
                               <Image url="@../Resources/images/Group%2023historyTwoPlayer.png" />

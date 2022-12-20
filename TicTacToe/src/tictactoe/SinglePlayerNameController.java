@@ -36,6 +36,8 @@ public class SinglePlayerNameController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    @FXML
+    private Button savedRec;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -105,5 +107,20 @@ public class SinglePlayerNameController implements Initializable {
         stage.setScene(scene);
         stage.show();
         }
+
+    @FXML
+    private void recordHistory(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("SingleRecord.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+   
+   
 
 }

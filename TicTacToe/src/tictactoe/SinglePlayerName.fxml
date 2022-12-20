@@ -82,6 +82,16 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Group>
+                        <ImageView fitHeight="50.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="80.0" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="@../Resources/images/savedRec.png" />
+                           </image>
+                        </ImageView>
+                        <Group translateX="80.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button fx:id="savedRec" maxHeight="50.0" maxWidth="120.0" minHeight="50.0" minWidth="120.0" mnemonicParsing="false" onAction="#recordHistory" opacity="0.0" prefHeight="50.0" prefWidth="120.0" translateX="80.0" />
+                           </children>
+                        </Group>
                      </children>
                   </GridPane>
                   <GridPane prefHeight="146.0" prefWidth="678.0" GridPane.rowIndex="2">

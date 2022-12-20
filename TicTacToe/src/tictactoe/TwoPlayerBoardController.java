@@ -63,6 +63,8 @@ public class TwoPlayerBoardController implements Initializable {
     private int playerTurn = 0;
     private String winner;
     Vector<Button> buttons;
+    @FXML
+    private Button startRecordBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -270,6 +272,10 @@ Alert a = new Alert(Alert.AlertType.CONFIRMATION);
         stage.setScene(scene);
         stage.show();
         }
+
+    @FXML
+    private void startRecord(ActionEvent event) {
+    }
     
 
 }

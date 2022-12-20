@@ -31,8 +31,9 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 public class WinningScreenSingleController implements Initializable {
+
+    String recState;
 
     @FXML
     private MediaView playingVedio;
@@ -45,48 +46,60 @@ public class WinningScreenSingleController implements Initializable {
     private Parent root;
     private Stage stage;
     private Scene scene;
-    private int counter1=CounterTwoPlayers.getCounterPlayer1();
-    private int counter2=CounterTwoPlayers.getCounterPlayer2();
-    LocalDate date ;
+    private int counter1 = CounterTwoPlayers.getCounterPlayer1();
+    private int counter2 = CounterTwoPlayers.getCounterPlayer2();
+    LocalDate date;
     LocalTime time;
-   private File file;
+    private File file;
     private MediaPlayer mediaplayer;
     private Media media;
     @FXML
     private Text congrats;
-   @Override
+    Boolean record;
+    String playerOneName;
+    String playerTwoName;
+    String winer ;
+    String dt;
+    String timeString;
+    String timeSubString;
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        if(WinnerPlayer.getWinnerName().equals(TwoPlayerName.getPlayerOne()))
-            
-        {file=new File("src/Resources/videos/test2.mp4");}
-        else
-        {
-            file=new File("src/Resources/videos/test3.mp4");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SinglePlayerBoard.fxml"));
+            root = loader.load();
+
+            SinglePlayerBoardController SinglePlayerBoardController = loader.getController();
+            record = SinglePlayerBoardController.isRecord();
+
+            if (WinnerPlayer.getWinnerName().equals(TwoPlayerName.getPlayerOne())) {
+                file = new File("src/Resources/videos/test2.mp4");
+            } else {
+                file = new File("src/Resources/videos/test3.mp4");
+            }
+            media = new Media(file.toURI().toString());
+            mediaplayer = new MediaPlayer(media);
+            playingVedio.setMediaPlayer(mediaplayer);
+            mediaplayer.play();
+            getRow();
+        } catch (IOException ex) {
+            Logger.getLogger(WinningScreenSingleController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        media=new Media(file.toURI().toString());
-        mediaplayer=new MediaPlayer(media);
-        playingVedio.setMediaPlayer(mediaplayer);
-        mediaplayer.play();
-        getRow();
-        
-    }    
+
+    }
 
     @FXML
     private void playAgainButton(ActionEvent event) {
         try {
-            
-   
+
             mediaplayer.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("SinglePlayerBoard.fxml"));
             root = loader.load();
-            
-           
-              SinglePlayerBoardController SinglePlayerBoardController = loader.getController();
-              SinglePlayerBoardController.setPlayerOneNameText(TwoPlayerName.getPlayerOne());
-              SinglePlayerBoardController.setPlayerCounter1(counter1++);
-              SinglePlayerBoardController.setPlayerCounter2(counter2++);
-              
+
+            SinglePlayerBoardController SinglePlayerBoardController = loader.getController();
+            SinglePlayerBoardController.setPlayerOneNameText(TwoPlayerName.getPlayerOne());
+            SinglePlayerBoardController.setPlayerCounter1(counter1++);
+            SinglePlayerBoardController.setPlayerCounter2(counter2++);
+
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -100,39 +113,53 @@ public class WinningScreenSingleController implements Initializable {
     private void exitButton(ActionEvent event) {
         Platform.exit();
     }
-    public void setWinnerNameText(String playerName){
-    this.winnerName.setText(playerName);
-    
+
+    public void setWinnerNameText(String playerName) {
+        this.winnerName.setText(playerName);
+
     }
-    
-    public void getRow(){
-        String playerOneName=TwoPlayerName.getPlayerOne();
-        String playerTwoName=TwoPlayerName.getPlayerTwo();
-        SinglePlayerBoardController spc=new SinglePlayerBoardController();
-        String winer=WinnerPlayer.getWinnerName();
-        date=java.time.LocalDate.now();
-        String dt=date.toString();
-        time=java.time.LocalTime.now();
-        String timeString=time.toString();
-        String timeSubString=timeString.substring(0,5);
-        
-        Path path=Paths.get("src/SystemFile/HistoryDataSingle.txt");
-        String data=playerOneName+","+playerTwoName+","+dt+","+winer+","+timeSubString+"\n";
-        byte[] arr=data.getBytes();
+
+    public void getRow() {
+        playerOneName = TwoPlayerName.getPlayerOne();
+        playerTwoName = TwoPlayerName.getPlayerTwo();
+        SinglePlayerBoardController spc = new SinglePlayerBoardController();
+        winer = WinnerPlayer.getWinnerName();
+        date = java.time.LocalDate.now();
+        dt = date.toString();
+        time = java.time.LocalTime.now();
+        timeString = time.toString();
+        timeSubString = timeString.substring(0, 5);
+
+        Path path = Paths.get("src/SystemFile/HistoryDataSingle.txt");
+        String data = playerOneName + "," + playerTwoName + "," + dt + "," + winer + "," + timeSubString + "\n";
+        byte[] arr = data.getBytes();
         try {
             Files.write(path, arr, StandardOpenOption.APPEND);
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Invalid path");
         }
-        
-    }  
+        System.out.println(record);
+        if (record == true) {
+            Path recPath = Paths.get("src/SystemFile/RecordedGame.txt");
+            String recData = playerOneName + "," + playerTwoName + "," + dt + "," + winer + "," + timeSubString + "\n";
+            byte[] recArr = recData.getBytes();
+            System.out.println(recArr);
+            try {
+                Files.write(recPath, recArr, StandardOpenOption.APPEND);
+            } catch (IOException e) {
+                System.out.println("Invalid path");
+            }
+
+        }
+
+    }
 
     public void setCongrats(String congrats) {
         this.congrats.setText(congrats);
     }
-    
- 
+
+    public void setRecord(String recordState) {
+        this.recState = recordState;
+    }
+
 }
-
-
-

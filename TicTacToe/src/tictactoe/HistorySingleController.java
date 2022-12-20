@@ -37,8 +37,8 @@ import javafx.stage.Stage;
  * @author SOHA
  */
 public class HistorySingleController implements Initializable {
-    String line;
-    ObservableList<SingleGame> observableList=FXCollections.observableArrayList();
+    private String line;
+    private ObservableList<SingleGame> observableList=FXCollections.observableArrayList();
 
     @FXML
     private TableView<SingleGame> table;
@@ -70,7 +70,7 @@ public class HistorySingleController implements Initializable {
             Integer counter=new Integer(1);
             while((line=reader.readLine())!=null){
                 String []game=line.split(",");
-               
+                
                 
                 idCol.setCellValueFactory(new PropertyValueFactory<SingleGame,Integer>("id"));
                 playerOneCol.setCellValueFactory(new PropertyValueFactory<SingleGame,String>("PlayerOneName"));

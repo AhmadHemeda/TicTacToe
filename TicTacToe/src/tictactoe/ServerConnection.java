@@ -1,8 +1,7 @@
 package tictactoe;
 
-import database.Player;
+
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -10,14 +9,10 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 
 public class ServerConnection extends Thread {

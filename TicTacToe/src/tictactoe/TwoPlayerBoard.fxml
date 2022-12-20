@@ -119,6 +119,7 @@
                 <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+                  <Button fx:id="startRecordBtn" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#startRecord" opacity="0.0" prefHeight="40.0" prefWidth="40.0" text="Button" translateX="617.0" />
                   <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="270.0" GridPane.rowIndex="1">
                      <image>
                         <Image url="@../Resources/images/boardGameImg2Players.png" />
