@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public interface DBMethods {
     
-     public ArrayList<Player> getPlayers();
+     public String getPlayers();
      public String registerPlayer(Player player); 
      public String loginPlayer(String Name,String password); 
 

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,13 @@ public class User extends Thread {
     Socket cs;
     DataInputStream dis;
     PrintStream ps;
-    static Vector<User> playerVector = new Vector<User>();
+    ArrayList<Player> player=new ArrayList<Player>();
+  
+    static Vector<User> playerVector=new Vector<User>();
+    
+   
+    String name;
+    
     boolean isOnline=false;
     public User(Socket cs) {
         try {
@@ -69,12 +76,13 @@ public class User extends Thread {
 
     }
     
-    public void sendPlayRequest(String mail) {
-        
+    public void sendPlayRequest(String nameO) {
         for (int i = 0; i < playerVector.size(); i++) {
-                    
-            System.out.println(playerVector.get(i));
+           if( playerVector.get(i).name.equals(nameO)){
+               playerVector.get(i).ps.println("Do you want to play with me?");
+           }
             
+            System.out.println(playerVector.get(i));
 
         }
 
@@ -87,16 +95,34 @@ public class User extends Thread {
 
         if (data[0].equals("login")) {
             System.out.println(data);
+            name=data[1];
             try {
                 DataAccessLayer dataAccess = new DataAccessLayer();
                 checkLogin = dataAccess.loginPlayer(data[1], data[2]);
                 ps.print(checkLogin);
                 System.out.println(checkLogin);
+               
+                
+                
             } catch (SQLException ex) {
                 Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (data[0].equals("signUp")) {
+        }else if (data[0].equals("onlineplayers")) {
+            try {
+                
+                DataAccessLayer dataAcessLayer = new DataAccessLayer();
+                checkLogin = dataAcessLayer.getPlayers();
+                ps.print(checkLogin);
+               
+
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } 
+        
+        else if (data[0].equals("signUp")) {
             try {
                 Player player = new Player();
                 player.setName(data[1]);
@@ -104,7 +130,7 @@ public class User extends Thread {
                 player.setPassword(data[3]);
                 DataAccessLayer dataAcessLayer = new DataAccessLayer();
                 checkLogin = dataAcessLayer.registerPlayer(player);
-                //ps.print(checkLogin);
+                ps.print(checkLogin);
                 System.out.println(checkLogin);
 
             } catch (SQLException ex) {
@@ -147,6 +173,13 @@ public class User extends Thread {
             }
 
         }
+        else if(data[0].equals("Invite")){
+            sendPlayRequest("Ahmed");
+        
+        
+        }
+         
+        
         return checkLogin;
 
     }
@@ -168,4 +201,5 @@ public class User extends Thread {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+ 
 }

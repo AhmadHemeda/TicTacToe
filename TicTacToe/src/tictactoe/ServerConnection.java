@@ -6,7 +6,9 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -26,11 +28,17 @@ public class ServerConnection extends Thread {
     private static DataInputStream dis;
     private static PrintStream ps;
     private static String ip;
-    private String dataSignUP;
+    private String data;
     private Parent root;
     private Stage stage;
     private Scene scene;
     public static ServerConnection signltone;
+    private Player player = new Player();
+    private ArrayList<String> playersName = new ArrayList<String>();
+
+    public ArrayList<String> getPlayers() {
+        return playersName;
+    }
 
     private ServerConnection(String ip) throws IOException {
         this.ip = ip;
@@ -54,25 +62,52 @@ public class ServerConnection extends Thread {
             try {
                 String str = "No Answer Yet";
 
-                dataSignUP = dis.readLine();
-                System.out.println(dataSignUP);
-                Platform.runLater(() -> {
-                    
-                    if (dataSignUP.equals("registerNotSuccess")) {
-                        Alert a = new Alert(Alert.AlertType.WARNING);
-                        a.setHeaderText("This mail already registered before");
-                        a.setTitle("Invalid Email!");
-                        Optional<ButtonType> result = a.showAndWait();
-                      
-                    }
+                data = dis.readLine();
+                System.out.println(data);
 
-                });
+                try {
+                    requestOnlinePlayers(data);
+                    setData(data);
+                    Platform.runLater(() -> {
+                        if (data.equals("registerSuccessregisterSuccess")) {
+                            Optional<ButtonType> resultLogin = AlertClass.logInAlert().showAndWait();
+                            Thread.interrupted();
+                        }
+
+                    });
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             } catch (IOException ex) {
                 Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
+    }
+
+    public Parent getRoot() {
+        return root;
+    }
+
+    public void setRoot(Parent root) {
+        this.root = root;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public DataInputStream getDis() {
+        return dis;
+    }
+
+    public PrintStream getPs() {
+        return ps;
     }
 
     public void writeData(String name, String mail, String password) {
@@ -88,35 +123,40 @@ public class ServerConnection extends Thread {
 
     }
 
-    CallBackSocketConditions CBSC = new CallBackSocketConditions();
+    public void invetation(String nameO) {
+        String playerInfo = "RequestToPlay" + "," + nameO;
+        ps.println(playerInfo);
+        System.out.println("Write data out invetation");
 
-    private void callBacksSocket(String data) {
-//            System.out.println(data);
-
-        if (data != null && !data.isEmpty()) {
-
-            switch (data) { // register,myMessage
-                case "registerSuccess":
-                    CBSC.registerSuccess();
-                    break;
-
-                case "registerNotSuccess":
-                    CBSC.registerNotSuccess();
-                    break;
-
-                case "LoginNotFound":
-                    CBSC.loginNotFound();
-                    break;
-
-                case "LoginFound":
-                    CBSC.loginNotFound();
-                    break;
-                case "SaveGame":
-                    break;
-
-            }
-
-        }
     }
 
+    public void writeDatagetAllPlayers() {
+        String playerInfo = "onlineplayers";
+        ps.println(playerInfo);
+        System.out.println("Write data out online");
+
+    }
+
+    private void requestOnlinePlayers(String data) throws InterruptedException {
+        String[] dataType = data.split(",");
+        switch (dataType[0]) {
+
+            case "registerSuccess":
+
+//                Optional<ButtonType> resultSignUp = AlertClass.signUpAlert().showAndWait();
+//                notify();
+                break;
+            case "registerNotSuccess":
+
+                break;
+            case "LoginNotFound":
+                Optional<ButtonType> resultLogin = AlertClass.logInAlert().showAndWait();
+                break;
+            case "RequestToPlay":
+                invetation(dataType[1]);
+                break;
+
+        }
+
+    }
 }

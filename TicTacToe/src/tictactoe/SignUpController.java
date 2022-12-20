@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +44,7 @@ public class SignUpController implements Initializable {
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private Root r;
 
     private static Socket userSockect;
 
@@ -50,14 +52,15 @@ public class SignUpController implements Initializable {
     @FXML
     private Button backButton;
 
-    private CallBackServerSocket callback;
+    String Data;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-
-            connection = ServerConnection.getInstance("10.178.240.134");
+            //10.178.240.134
+            //10.178.240.117
+            connection = ServerConnection.getInstance("127.0.0.1");
 
         } catch (IOException ex) {
             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,7 +69,7 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void signUpButton(ActionEvent event) {
+    private void signUpButton(ActionEvent event) throws InterruptedException {
 
         if (nameField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty() || passwordField.getText().isEmpty() || !passwordField.getText().equals(passwordFieldConfimation.getText())) {
             Alert a = new Alert(Alert.AlertType.WARNING);
@@ -76,34 +79,34 @@ public class SignUpController implements Initializable {
 
         } else {
 
-            connection.writeData(nameField.getText(),
-                    emailField.getText(),
-                    passwordField.getText());
-
-//                 String str=connection.getDataSignUP();
-//                if (str.equals("registerNotSuccess")) {
-//                    Alert b = new Alert(Alert.AlertType.WARNING);
-//                    b.setHeaderText("Try Another Email");
-//                    b.setTitle("Invalid Email");
-//                    Optional<ButtonType> result = b.showAndWait();
-//                }
             try {
-                synchronized(root)
-                {
-                root.notify();
-                }
-                root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
+              
+                connection.writeData(nameField.getText(),
+                        emailField.getText(),
+                        passwordField.getText());
+                
+               
+                root = FXMLLoader.load(getClass().getResource("TwoPlayerBoard.fxml"));
+                stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             } catch (IOException ex) {
-                Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                        } 
+                    } 
+               
+          
+               
+           
+            
 
-        }
+                
 
-    }
+      
+
+    
 
     @FXML
     public void backButton(ActionEvent e) {

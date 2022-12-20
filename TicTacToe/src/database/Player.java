@@ -9,6 +9,10 @@ public class Player {
     public Player() {
     }
 
+    public Player(String name) {
+        this.name = name;
+    }
+
     
 
     public Player(int ID, String mail, String password, String name) {

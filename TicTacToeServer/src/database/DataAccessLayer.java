@@ -10,7 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DataAccessLayer implements DBMethods {
-
+   ArrayList<Player> playerOnline=new ArrayList<Player>();
+   
     static public Player player;
     static Connection con;
     Statement stmt;
@@ -24,10 +25,11 @@ public class DataAccessLayer implements DBMethods {
     }
     
     @Override
-    public ArrayList<Player> getPlayers() {
+    public String getPlayers() {
+        String playeronline = "onlineplayer,";
         ArrayList<Player> players = new ArrayList();
         try {
-            prepStatment = con.prepareStatement("SELECT * FROM PLAYER");
+            prepStatment = con.prepareStatement("SELECT * FROM PLAYER WHERE status=TRUE");
             resultSet = prepStatment.executeQuery();
             while (resultSet.next()) {
                 players.add(new Player(
@@ -36,14 +38,16 @@ public class DataAccessLayer implements DBMethods {
                         resultSet.getString(3),
                         resultSet.getString(4)
                 ));
-
+                for (Player player : players) {
+                   playeronline = playeronline +","+ player.getName();
+                }
             }
             
 
         } catch (SQLException ex) {
             Logger.getLogger(DataAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return players;
+        return playeronline;
     }
     
 
@@ -51,7 +55,7 @@ public class DataAccessLayer implements DBMethods {
     public String registerPlayer(Player player) {
         String registerState = "registerNotSuccess";
         try {
-            prepStatment = con.prepareStatement("INSERT INTO PLAYER(ID,MAIL,PASSWORD,NAME)VALUES(?,?,?,?)");
+            prepStatment = con.prepareStatement("INSERT INTO PLAYER(ID,MAIL,PASSWORD,NAME,STATUS,ISPLAYING)VALUES(?,?,?,?,FALSE,FALSE)");
             prepStatment.setInt(1, getNewId());
             prepStatment.setString(2, player.getMail());
             prepStatment.setString(3, player.getPassword());
@@ -76,16 +80,30 @@ public class DataAccessLayer implements DBMethods {
             prepStatment.setString(1, mail);
             prepStatment.setString(2, password);
             resultSet = prepStatment.executeQuery();
-            while (resultSet.next()) {
-                check = "LoginFound";
-                
-            }
+            boolean isExist = resultSet.next();
 
+            if (isExist) {
+                
+                    check = "true," + resultSet.getInt("id") + "," + resultSet.getString("mail") + "," + resultSet.getInt("name");
+                    PreparedStatement stmtUpdate = con.prepareStatement("UPDATE players set status=TRUE WHERE MAIL=? ");
+                    prepStatment.setString(1, mail);
+                    int updataNumber = stmtUpdate.executeUpdate();
+                }
+             else {
+                check = "false,notExist";
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(DataAccessLayer.class.getName()).log(Level.SEVERE, null, ex);
+            check = "false,error";
+            System.out.println(ex);
+
+        } finally {
+            return check;
         }
-        return check;
+
+       
     }
+      
+    
     
     
     public ArrayList<Game> getHistGames() {
