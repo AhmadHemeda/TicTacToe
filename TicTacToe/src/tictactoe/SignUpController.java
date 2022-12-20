@@ -1,14 +1,14 @@
 package tictactoe;
 
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,34 +68,61 @@ public class SignUpController implements Initializable {
     @FXML
     private void signUpButton(ActionEvent event) {
 
-        if (nameField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty() || passwordField.getText().isEmpty() || !passwordField.getText().equals(passwordFieldConfimation.getText())) {
-            Alert a = new Alert(Alert.AlertType.WARNING);
-            a.setHeaderText("Please enter player name");
-            a.setTitle("Pay Attention");
-            Optional<ButtonType> result = a.showAndWait();
+        final String passwordRegex = "[0-9]+";
 
+        if (nameField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty() || passwordFieldConfimation.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Please enter all fields for succesful registeration");
+            alert.setTitle("Pay Attention");
+            Optional<ButtonType> result = alert.showAndWait();
+
+        } else if (!isNameValid(nameField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Name should be only letters");
+            alert.setTitle("Pay Attention");
+            Optional<ButtonType> result = alert.showAndWait();
+        } else if (passwordField.getText().matches(passwordRegex)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Password should not contain only numerics");
+            alert.setTitle("Pay Attention");
+            Optional<ButtonType> result = alert.showAndWait();
+
+        } else if (passwordField.getText().length() < 8) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Passsword should contain at least 8 alphanumeric characters");
+            alert.setTitle("Pay Attention");
+            Optional<ButtonType> result = alert.showAndWait();
+
+        } else if (!passwordField.getText().equals(passwordFieldConfimation.getText())) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Password confirmation does not match");
+            alert.setTitle("Pay Attention");
+            Optional<ButtonType> result = alert.showAndWait();
+
+        } else if (!isEmailValid(emailField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Invalid email!");
+            alert.setTitle("Pay Attention");
+            Optional<ButtonType> result = alert.showAndWait();
+
+        } else if (nameField.getText().contains(",") || emailField.getText().contains(",") || passwordField.getText().contains(",")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Invalid comma usage");
+            alert.setTitle("Pay Attention");
+            Optional<ButtonType> result = alert.showAndWait();
         } else {
 
             connection.writeData(nameField.getText(),
                     emailField.getText(),
                     passwordField.getText());
-
-//                 String str=connection.getDataSignUP();
-//                if (str.equals("registerNotSuccess")) {
-//                    Alert b = new Alert(Alert.AlertType.WARNING);
-//                    b.setHeaderText("Try Another Email");
-//                    b.setTitle("Invalid Email");
-//                    Optional<ButtonType> result = b.showAndWait();
-//                }
             try {
-                synchronized(root)
-                {
-                root.notify();
+                synchronized (root) {
+                    root.notify();
                 }
                 root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
             } catch (IOException ex) {
                 Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            }
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -129,5 +156,23 @@ public class SignUpController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public boolean isEmailValid(String email) {
+
+        String emailRegex = "^[A-Z0-9]+@[A-Z0-9]+\\.[A-Z]{2,6}$";
+        Pattern emailPattern = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
+        Matcher emailMatches = emailPattern.matcher(email);
+
+        return emailMatches.find();
+    }
+
+    public boolean isNameValid(String name) {
+
+        String nameRegex = "^[A-Z]{3,20}$";
+        Pattern namePattern = Pattern.compile(nameRegex, Pattern.CASE_INSENSITIVE);
+        Matcher nameMatches = namePattern.matcher(name);
+
+        return nameMatches.find();
     }
 }

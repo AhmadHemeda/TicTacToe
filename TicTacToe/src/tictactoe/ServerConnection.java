@@ -1,6 +1,5 @@
 package tictactoe;
 
-import database.Player;
 import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.IOException;

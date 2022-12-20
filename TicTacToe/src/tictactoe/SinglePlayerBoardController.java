@@ -1,7 +1,6 @@
 package tictactoe;
 
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -62,7 +61,7 @@ public class SinglePlayerBoardController implements Initializable {
     private Scene scene;
     private Parent root;
     private String winner;
-     private int counterPlayer1 = CounterTwoPlayers.getCounterPlayer1();
+    private int counterPlayer1 = CounterTwoPlayers.getCounterPlayer1();
     private int counterPlayer2 = CounterTwoPlayers.getCounterPlayer2();
     private int counterclicked = 0;
 
@@ -87,40 +86,39 @@ public class SinglePlayerBoardController implements Initializable {
 
     @FXML
     private void homeButton(ActionEvent event) {
-          Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-                a.setHeaderText("The game will not be saved");
-                a.setTitle("Exit Game!");
-                Optional<ButtonType> result = a.showAndWait();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("The game will be discarded if not ended.");
+        a.setTitle("Exit Game!");
+        Optional<ButtonType> result = a.showAndWait();
 
-                if (result.get() == ButtonType.OK) {
+        if (result.get() == ButtonType.OK) {
 
-                    try {
-            root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
         }
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 
-                }
-        
-       
     }
 
     @FXML
     private void exitButton(ActionEvent event) {
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-                a.setHeaderText("The game will not be saved");
-                a.setTitle("Exit Game!");
-                Optional<ButtonType> result = a.showAndWait();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("The game will be discarded if not ended.");
+        a.setTitle("Exit Game!");
+        Optional<ButtonType> result = a.showAndWait();
 
-                if (result.get() == ButtonType.OK) {
+        if (result.get() == ButtonType.OK) {
 
-                    Platform.exit();
-                }
-        
+            Platform.exit();
+        }
+
     }
 
     @FXML
@@ -139,10 +137,10 @@ public class SinglePlayerBoardController implements Initializable {
                 root = loader.load();
                 WinningScreenSingleController winningSceneController = loader.getController();
                 if (stat.equals("XXX")) {
-                   
-                    winningSceneController.setWinnerNameText("Congratulations \t"+playerOneName.getText());
+
+                    winningSceneController.setWinnerNameText("Congratulations \t" + playerOneName.getText());
                 } else {
-                   
+
                     winningSceneController.setWinnerNameText("You Lose!");
                 }
                 stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -225,7 +223,15 @@ public class SinglePlayerBoardController implements Initializable {
 
             }
             if (isWon(gameStatus) == false && isfull() == true) {
-                restartGame();
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Press OK to restart game.");
+                alert.setTitle("Draw!");
+                Optional<ButtonType> result = alert.showAndWait();
+                
+                if (result.get() == ButtonType.OK) {
+                    restartGame();
+                }
+                
             }
         }
         return stat;

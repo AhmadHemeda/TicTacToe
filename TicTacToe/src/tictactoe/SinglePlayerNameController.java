@@ -1,4 +1,3 @@
-
 package tictactoe;
 
 import java.io.IOException;
@@ -36,12 +35,13 @@ public class SinglePlayerNameController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-     @FXML
+    }
+
+    @FXML
     public void backArrow(ActionEvent event) {
         try {
             root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
@@ -54,31 +54,24 @@ public class SinglePlayerNameController implements Initializable {
         stage.show();
 
     }
-     @FXML
+
+    @FXML
     public void NextButtonSinglePlayer(ActionEvent event) {
-          CounterTwoPlayers.setCounterPlayer1(0);
-          CounterTwoPlayers.setCounterPlayer2(0);
+        CounterTwoPlayers.setCounterPlayer1(0);
+        CounterTwoPlayers.setCounterPlayer2(0);
         try {
-           
-            if (textFieldPlayerName.getText().isEmpty() ) {
-                Alert a = new Alert(Alert.AlertType.WARNING);
-                a.setHeaderText("Please enter player name");
-                a.setTitle("Pay Attention");
-                Optional<ButtonType> result = a.showAndWait();
 
-                if (result.get() == ButtonType.OK) {
-
-                    root = FXMLLoader.load(getClass().getResource("SinglePlayerName.fxml"));
-                }
+            if (textFieldPlayerName.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Please enter player name");
+                alert.setTitle("Pay Attention");
+                Optional<ButtonType> result = alert.showAndWait();
 
             } else {
                 TwoPlayerName.setPlayerOne(textFieldPlayerName.getText());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Defficulty.fxml"));
                 root = loader.load();
-             
-                
-                
-      
+
             }
 
         } catch (IOException ex) {
@@ -88,14 +81,13 @@ public class SinglePlayerNameController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-         
-           
 
     }
-    @FXML
-   public void historySinglePlayer(ActionEvent event) {
 
-       try {
+    @FXML
+    public void historySinglePlayer(ActionEvent event) {
+
+        try {
             root = FXMLLoader.load(getClass().getResource("HistorySingle.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,6 +96,6 @@ public class SinglePlayerNameController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        }
+    }
 
 }

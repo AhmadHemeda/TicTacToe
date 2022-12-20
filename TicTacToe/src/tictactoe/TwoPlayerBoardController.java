@@ -85,33 +85,34 @@ public class TwoPlayerBoardController implements Initializable {
 
     @FXML
     private void homeButton(ActionEvent event) {
-Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-                a.setHeaderText("The game will not be saved");
-                a.setTitle("Exit Game!");
-                Optional<ButtonType> result = a.showAndWait();
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setHeaderText("The game will be discarded if not ended.");
+        a.setTitle("Exit Game!");
+        Optional<ButtonType> result = a.showAndWait();
 
-                if (result.get() == ButtonType.OK){
-        try {
-            root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+        if (result.get() == ButtonType.OK) {
+            try {
+                root = FXMLLoader.load(getClass().getResource("choosingModeScene.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(ScenesNavigator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-                }
     }
 
     @FXML
     private void exitButton(ActionEvent event) {
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-                a.setHeaderText("The game will not be saved");
-                a.setTitle("Exit Game!");
-                Optional<ButtonType> result = a.showAndWait();
+        a.setHeaderText("The game will be discarded if not ended.");
+        a.setTitle("Exit Game!");
+        Optional<ButtonType> result = a.showAndWait();
 
-                if (result.get() == ButtonType.OK)
-                    Platform.exit();
+        if (result.get() == ButtonType.OK) {
+            Platform.exit();
+        }
     }
 
     private void setUpButton(Button button) {
@@ -125,10 +126,10 @@ Alert a = new Alert(Alert.AlertType.CONFIRMATION);
                     root = loader.load();
                     WinningScreenController winningSceneController = loader.getController();
                     if (stat.equals("XXX")) {
-                       
+
                         winningSceneController.setWinnerNameText(playerOneName.getText());
                     } else {
-                         
+
                         winningSceneController.setWinnerNameText(playerTwoName.getText());
                     }
                     stage = (Stage) ((Button) MouseEvent.getSource()).getScene().getWindow();
@@ -204,8 +205,16 @@ Alert a = new Alert(Alert.AlertType.CONFIRMATION);
 
             }
             if (isWon() == false && isfull() == true) {
-                restartGame();
-                playerTurn = 0;
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Press OK to restart game.");
+                alert.setTitle("Draw!");
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.get() == ButtonType.OK) {
+                    restartGame();
+                    playerTurn = 0;
+                }
+
             }
 
         }
@@ -258,9 +267,10 @@ Alert a = new Alert(Alert.AlertType.CONFIRMATION);
     public void setPlayerCounter2(int counter2) {
         this.playerTwoScoreBtn.setText(Integer.toString(counter2));
     }
+
     public void historyButton(ActionEvent event) {
 
-       try {
+        try {
             root = FXMLLoader.load(getClass().getResource("HistoryTwo.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(TwoPlayerBoardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -269,7 +279,6 @@ Alert a = new Alert(Alert.AlertType.CONFIRMATION);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        }
-    
+    }
 
 }

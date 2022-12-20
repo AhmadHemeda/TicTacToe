@@ -3,10 +3,7 @@ package tictactoe;
 
 
 public class CounterTwoPlayers {
-    public static void main(String[] args){
-       System.out.println(java.time.LocalDate.now());
     
-    }
     private static  int counterPlayer1=0;
     private static  int counterPlayer2=0;
     

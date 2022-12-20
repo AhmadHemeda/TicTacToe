@@ -1,4 +1,4 @@
-package requestgame;
+package tictactoe;
 
 import java.net.URL;
 import java.util.ResourceBundle;
