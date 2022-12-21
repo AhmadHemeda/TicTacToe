@@ -75,6 +75,8 @@ The values we save about each game is its date and time ,player one ,player two 
 the values we save about each player is his mail, password, name and his id.
 the values we save about each step is the button clicked in this step and the value this button took.
 </p>
+  
+  
 </li>
 
 ### <ul>
