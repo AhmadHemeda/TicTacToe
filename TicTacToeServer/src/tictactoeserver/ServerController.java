@@ -46,7 +46,7 @@ public class ServerController implements Initializable, Runnable {
 
                 Socket s = serverSocket.accept();
 
-                new User(s);
+                new UserHandler(s);
 
             }
         } catch (IOException ex) {
@@ -63,12 +63,12 @@ public class ServerController implements Initializable, Runnable {
 //            
 //            serverSocket.close();
 //           
-//            for (User user : User.userVector) {
+//            for (UserHandler user : UserHandler.userVector) {
 //                user.ps.close();
 //                user.dis.close();
 //                user.stop();
 //            }
-//            User.userVector.clear();
+//            UserHandler.userVector.clear();
 //            
 //            
 //            System.out.println("close");

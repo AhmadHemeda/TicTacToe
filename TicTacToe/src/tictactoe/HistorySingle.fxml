@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<<<<<<< HEAD
+=======
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+>>>>>>> c7a1c8ab0d84dfa8310ec75855f2f6a6b1111eae
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<<<<<<< HEAD
+<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.HistorySingleController">
+   <children>
+      <GridPane prefHeight="861.0" prefWidth="1200.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.0" minWidth="523.0" prefWidth="523.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="677.0" minWidth="677.0" prefWidth="677.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="861.0" fitWidth="523.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/images/background.png" />
+               </image>
+            </ImageView>
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="800.0" minHeight="800.0" prefHeight="800.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TableView fx:id="STable" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f3eeee; -fx-border-radius: 50; -fx-border-style: F0C48A;" GridPane.rowIndex="1">
+                    <columns>
+                        <TableColumn fx:id="idSCol" maxWidth="102.0" minWidth="102.0" prefWidth="102.0" style="-fx-background-color: #F0C48A;" text="ID" />
+                        <TableColumn fx:id="playerSCol" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" style="-fx-background-color: #f0c48a;" text="Player Name" />
+                        <TableColumn fx:id="difficultySCol" maxWidth="102.0" minWidth="102.0" prefWidth="102.0" style="-fx-background-color: #f0c48a;" text="Difficulty" />
+                        <TableColumn fx:id="winnerSCol" maxWidth="102.0" minWidth="102.0" prefWidth="102.0" style="-fx-background-color: #F0C48A;" text="Winner" />
+                        <TableColumn fx:id="dateSCol" maxWidth="102.0" minWidth="102.0" prefWidth="102.0" style="-fx-background-color: #F0C48A;" text="Date" />
+                        <TableColumn fx:id="timeSCol" maxWidth="102.0" minWidth="102.0" prefWidth="102.0" style="-fx-background-color: #F0C48A;" text="Time" />
+                    </columns>
+                     <GridPane.margin>
+                        <Insets bottom="50.0" left="30.0" right="30.0" top="10.0" />
+                     </GridPane.margin>
+                  </TableView>
+                  <ImageView fx:id="SinBackBtn" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <image>
+                        <Image url="@../Resources/images/backSinglePlayer.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+=======
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tictactoe.HistorySingleController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="861.0" prefWidth="1200.0">
+         <children>
+            <GridPane prefHeight="861.0" prefWidth="1200.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.0" minWidth="523.0" prefWidth="523.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="677.0" minWidth="677.0" prefWidth="677.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="861.0" fitWidth="523.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/images/background.png" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="table" maxHeight="550.0" maxWidth="580.0" minWidth="580.0" prefHeight="200.0" prefWidth="580.0" scaleShape="false" style="-fx-background-color: #f3eeee; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: #f3eeee; -fx-border-image-width: 20; -fx-border-width: 5; -fx-border-insets: 10; -fx-region-border: 10;" GridPane.columnIndex="1">
+                     <columns>
+                        <TableColumn fx:id="idCol" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" style="-fx-background-color: #FF925B;" text="ID" />
+                        <TableColumn fx:id="dateCol" prefWidth="75.0" style="-fx-background-color: #FF925B;" text="Date" />
+                        <TableColumn fx:id="timeCol" prefWidth="75.0" style="-fx-background-color: #FF925B;" text="Time" />
+                        <TableColumn fx:id="playerOneCol" prefWidth="75.0" style="-fx-background-color: #FF925B;" text="PlayerOne" />
+                        <TableColumn fx:id="playerTwoCol" prefWidth="75.0" style="-fx-background-color: #FF925B;" text="PlayerTwo" />
+                        <TableColumn fx:id="winnerCol" prefWidth="75.0" style="-fx-background-color: #FF925B;" text="Winner" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="50.0" right="50.0" top="120.0" />
+                     </GridPane.margin>
+                  </TableView>
+                  <Button fx:id="backHistory" mnemonicParsing="false" onAction="#backArrow" style="-fx-background-color: transparent;" translateX="30.0" translateY="-400.0" GridPane.columnIndex="1">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Resources/images/backOnline.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+>>>>>>> c7a1c8ab0d84dfa8310ec75855f2f6a6b1111eae
+   </children>
+</AnchorPane>
