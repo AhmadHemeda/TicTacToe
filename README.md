@@ -77,6 +77,55 @@ the values we save about each step is the button clicked in this step and the va
 </p>
 </li>
 
+### <ul>
+
+<li>  Mapping for single player:
+<div align="center">
+<img src="https://user-images.githubusercontent.com/119635557/208946995-edd59a1e-31f8-4dc2-85f5-e24e9c00e10e.PNG" width="800">
+</div>
+
+
+</li>
+
+<li>  Mapping for Two Local game:
+<div align="center">
+<img src="https://user-images.githubusercontent.com/119635557/208947443-36f87906-e95d-4788-a3f9-5ed2dc74a548.PNG" width="800">
+</div>
+
+
+</li>
+
+<li>  Mapping for Online game:
+<div align="center">
+<img src="https://user-images.githubusercontent.com/119635557/208947195-617453cb-1b3a-4414-a8c5-a289836fdb40.PNG" width="800">
+</div>
+
+
+</li>
+<li>  Schema for single player:
+<div align="center">
+<img src="https://user-images.githubusercontent.com/119635557/208948762-e0323988-ed83-4705-b22a-d30da5788007.PNG" width="800">
+</div>
+
+
+</li>
+
+<li>  Schema for Two Local game:
+<div align="center">
+<img src="https://user-images.githubusercontent.com/119635557/208949016-eb283041-5549-4e41-ac0c-c7703132f6e4.PNG" width="800">
+</div>
+
+
+</li>
+
+<li>  Schema for Online game:
+<div align="center">
+<img src="https://user-images.githubusercontent.com/119635557/208949254-21570b74-90ec-4724-9214-d0d417cb2087.PNG" width="800">
+</div>
+
+
+</li>
+
 
 
 </ul>
