@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/database/DataAccessLayer.java</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/database/DataBaseConn.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/tictactoeserver/UserHandler.java</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/database/DBMethods.java</file>
-            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/tictactoeserver/User.java</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/database/Game.java</file>
+            <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/tictactoeserver/TicTacToeServer.java</file>
             <file>file:/C:/Users/SOHA/Desktop/TicTacToe/TicTacToeServer/src/tictactoeserver/ServerController.java</file>
         </group>
     </open-files>
