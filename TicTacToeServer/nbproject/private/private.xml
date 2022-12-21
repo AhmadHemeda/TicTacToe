@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="Group">
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/tictactoeserver/ServerController.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/database/DataAccessLayer.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/tictactoeserver/User.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/database/DBMethods.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/database/DataBaseConn.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/database/Game.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/database/Steps.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/tictactoeserver/TicTacToeServer.java</file>
+            <file>file:/Users/mo_fathy/Desktop/momen/TicTacToeServer/src/database/Player.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/noha%20Ali/Desktop/TictacToeClientAndServer/TicTacToeServer/src/tictactoeserver/ServerController.java</file>
+            <file>file:/C:/Users/noha%20Ali/Desktop/TictacToeClientAndServer/TicTacToeServer/src/database/DataBaseConn.java</file>
+        </group>
+    </open-files>
+</project-private>
