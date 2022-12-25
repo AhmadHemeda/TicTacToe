@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tictactoe;
 
 import javafx.application.Application;
@@ -16,10 +12,22 @@ import javafx.stage.StageStyle;
  *
  * @author SOHA
  */
+
 public class TicTacToe extends Application {
+    private static Stage stage;
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        TicTacToe.stage = stage;
+    }
     
+            
     @Override
     public void start(Stage stage) throws Exception {
+        this.stage=stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoadingScreen.fxml"));
         
         Scene scene = new Scene(root);

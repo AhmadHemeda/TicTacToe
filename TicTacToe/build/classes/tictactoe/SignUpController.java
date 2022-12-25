@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -183,16 +184,60 @@ public class SignUpController implements Initializable {
             connection.writeData(nameField.getText(),
                     emailField.getText(),
                     passwordField.getText());
-            try {
-                
-                root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-            } catch (IOException ex) {
-                Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            Platform.runLater(() -> {
+                try {
+                    Thread.sleep(1000);
+                    String str = connection.getData();
+                    System.out.println(str);
+                    if (str.equals("registerNotSuccess")) {
+                        Alert a = new Alert(Alert.AlertType.WARNING);
+                        a.setHeaderText("This mail already registered before");
+                        a.setTitle("Invalid Email!");
+                        Optional<ButtonType> result = a.showAndWait();
+                        if (result.get() == ButtonType.OK) {
+                            try {
+                                
+                                root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+                            } catch (IOException ex) {
+                                Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                            scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+                            
+                            
+                        }
+                        
+                    }
+                    else{
+                        Alert a = new Alert(Alert.AlertType.WARNING);
+                        a.setHeaderText("Sign Up Successfull!");
+                        a.setTitle("Signed Up");
+                        Optional<ButtonType> result = a.showAndWait();
+                        if (result.get() == ButtonType.OK) {
+                            try {
+                                
+                                root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
+                            } catch (IOException ex) {
+                                Logger.getLogger(ServerConnection.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                            scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+                            
+                            
+                        }
+                        
+
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            });
+
 
         }
 
@@ -241,4 +286,5 @@ public class SignUpController implements Initializable {
 
         return nameMatches.find();
     }
+      
 }

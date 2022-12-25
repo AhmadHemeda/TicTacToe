@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="requestgame.RequestGameController">
+<AnchorPane id="AnchorPane" prefHeight="861.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.RequestGameController">
     <children>
         <GridPane prefHeight="861.0" prefWidth="1200.0">
             <columnConstraints>
@@ -26,7 +26,7 @@
             <children>
                 <ImageView fitHeight="861.0" fitWidth="523.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/background.png" />
+                        <Image url="@../Resources/images/background.png" />
                     </image>
                 </ImageView>
                 <GridPane GridPane.columnIndex="1">
@@ -41,7 +41,7 @@
                     <children>
                         <ImageView fx:id="backArrow" fitHeight="40.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/backOnline.png" />
+                                <Image url="@../Resources/images/backOnline.png" />
                             </image>
                             <GridPane.margin>
                                 <Insets left="20.0" />
@@ -52,7 +52,7 @@
                                 <Insets bottom="50.0" left="265.0" />
                             </GridPane.margin>
                             <image>
-                                <Image url="@../images/playOnline.png" />
+                                <Image url="@../Resources/images/boardGameImg.png" />
                             </image>
                         </ImageView>
                         <Text fill="#430f97" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose one to play with" textAlignment="CENTER" GridPane.rowIndex="1">
@@ -75,7 +75,7 @@
                         <Insets bottom="50.0" top="450.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="requrstButton" mnemonicParsing="false" style="-fx-background-color: #FF925B; -fx-background-radius: 100; -fx-border-radius: 100;" text="Request" textFill="#500b4d" GridPane.rowIndex="2">
+                  <Button fx:id="requrstButton" mnemonicParsing="false" onAction="#requestToPlayButton" style="-fx-background-color: #FF925B; -fx-background-radius: 100; -fx-border-radius: 100;" text="Request" textFill="#500b4d" GridPane.rowIndex="2">
                      <font>
                         <Font name="Al Bayan Plain" size="24.0" />
                      </font>
@@ -83,6 +83,7 @@
                         <Insets left="500.0" top="400.0" />
                      </GridPane.margin>
                   </Button>
+                  <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshButton" text="refresh" translateX="600.0" />
                     </children>
                 </GridPane>
             </children>
